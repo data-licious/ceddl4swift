@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PageInfo: BaseItem<PageInfo> {
+public class PageInfo: BaseItem<AnyObject> {
 
     private static let AUTHOR = "author"
     private static let BREADCRUMBS = "breadcrumbs"
@@ -39,112 +39,115 @@ public class PageInfo: BaseItem<PageInfo> {
         return parent
     }
 
-    public func pageID(pageID: String) -> Self {
-        super.addItem(field: PageInfo.PAGE_ID, value: pageID as AnyObject)
+    public func pageID(_ pageID: String) -> Self {
+        super.addItem(PageInfo.PAGE_ID, value: pageID as AnyObject)
         return self
     }
 
-    public func pageName(pageName: String) -> Self {
-        super.addItem(field: PageInfo.PAGE_NAME, value: pageName as AnyObject)
+    public func pageName(_ pageName: String) -> Self {
+        super.addItem(PageInfo.PAGE_NAME, value: pageName as AnyObject)
         return self
     }
 
-    public func destinationURL(destinationURL: String) -> Self {
-        super.addItem(field: PageInfo.DESTINATION_URL, value: destinationURL as AnyObject)
+    public func destinationURL(_ destinationURL: String) -> Self {
+        super.addItem(PageInfo.DESTINATION_URL, value: destinationURL as AnyObject)
         return self
     }
 
-    public func referringURL(referringURL: String) -> Self {
-        super.addItem(field: PageInfo.REFERRING_URL, value: referringURL as AnyObject)
+    public func referringURL(_ referringURL: String) -> Self {
+        super.addItem(PageInfo.REFERRING_URL, value: referringURL as AnyObject)
         return self
     }
 
-    public func sysEnv(sysEnv: String) -> Self {
-        super.addItem(field: PageInfo.SYS_ENV, value: sysEnv as AnyObject)
+    public func sysEnv(_ sysEnv: String) -> Self {
+        super.addItem(PageInfo.SYS_ENV, value: sysEnv as AnyObject)
         return self
     }
 
-    public func variant(variant: String) -> Self {
-        super.addItem(field: PageInfo.VARIANT, value: variant as AnyObject)
+    public func variant(_ variant: String) -> Self {
+        super.addItem(PageInfo.VARIANT, value: variant as AnyObject)
         return self
     }
 
-    public func version(version: String) -> Self {
-        super.addItem(field: PageInfo.VERSION, value: version as AnyObject)
+    public func version(_ version: String) -> Self {
+        super.addItem(PageInfo.VERSION, value: version as AnyObject)
         return self
     }
 
-    public func breadCrumbs(breadCrumbs: Array<String>) -> Self {
-        super.addItem(field: PageInfo.BREADCRUMBS, value: breadCrumbs as AnyObject)
+    public func breadCrumbs(_ breadCrumbs: Array<String>) -> Self {
+        super.addItem(PageInfo.BREADCRUMBS, value: breadCrumbs as AnyObject)
         return self
     }
 
-    public func author(author: String) -> Self {
-        super.addItem(field: PageInfo.AUTHOR, value: author as AnyObject)
+    public func author(_ author: String) -> Self {
+        super.addItem(PageInfo.AUTHOR, value: author as AnyObject)
         return self
     }
 
-    public func issueDate(issueDate: String) -> Self {
-        super.addItem(field: PageInfo.ISSUE_DATE, value: issueDate as AnyObject)
+    public func issueDate(_ issueDate: String) -> Self {
+        super.addItem(PageInfo.ISSUE_DATE, value: issueDate as AnyObject)
         return self
     }
 
-    public func issueDate(issueDate: Date) -> Self {
-        super.addItem(field: PageInfo.ISSUE_DATE, value: issueDate as AnyObject)
+    public func issueDate(_ issueDate: Date) -> Self {
+        let issueDateString = dateToString(date: issueDate)
+        super.addItem(PageInfo.ISSUE_DATE, value: issueDateString as AnyObject)
         return self
     }
 
-    public func effectiveDate(effectiveDate: String) -> Self {
-        super.addItem(field: PageInfo.EFFECTIVE_DATE, value: effectiveDate as AnyObject)
+    public func effectiveDate(_ effectiveDate: String) -> Self {
+        super.addItem(PageInfo.EFFECTIVE_DATE, value: effectiveDate as AnyObject)
         return self
     }
 
-    public func effectiveDate(effectiveDate: Date) -> Self {
-        super.addItem(field: PageInfo.EFFECTIVE_DATE, value: effectiveDate as AnyObject)
+    public func effectiveDate(_ effectiveDate: Date) -> Self {
+        let effectiveDateString = dateToString(date: effectiveDate)
+        super.addItem(PageInfo.EFFECTIVE_DATE, value: effectiveDateString as AnyObject)
         return self
     }
 
-    public func expiryDate(expiryDate: String) -> Self {
-        super.addItem(field: PageInfo.EXPIRY_DATE, value: expiryDate as AnyObject)
+    public func expiryDate(_ expiryDate: String) -> Self {
+        super.addItem(PageInfo.EXPIRY_DATE, value: expiryDate as AnyObject)
         return self
     }
 
-    public func expiryDate(expiryDate: Date) -> Self {
-        super.addItem(field: PageInfo.EXPIRY_DATE, value: expiryDate as AnyObject)
+    public func expiryDate(_ expiryDate: Date) -> Self {
+        let expiryDateString = dateToString(date: expiryDate)
+        super.addItem(PageInfo.EXPIRY_DATE, value: expiryDateString as AnyObject)
         return self
     }
 
-    public func langauage(langauage: String) -> Self {
-        super.addItem(field: PageInfo.LANGUAGE, value: langauage as AnyObject)
+    public func language(_ language: String) -> Self {
+        super.addItem(PageInfo.LANGUAGE, value: language as AnyObject)
         return self
     }
 
-    public func geoRegion(geoRegion: String) -> Self {
-        super.addItem(field: PageInfo.GEO_REGION, value: geoRegion as AnyObject)
+    public func geoRegion(_ geoRegion: String) -> Self {
+        super.addItem(PageInfo.GEO_REGION, value: geoRegion as AnyObject)
         return self
     }
 
-    public func industryCodes(industryCodes: String) -> Self {
-        super.addItem(field: PageInfo.INDUSTRY_CODES, value: industryCodes as AnyObject)
+    public func industryCodes(_ industryCodes: String) -> Self {
+        super.addItem(PageInfo.INDUSTRY_CODES, value: industryCodes as AnyObject)
+        return self
+    } 
+
+    public func publisher(_ publisher: String) -> Self {
+        super.addItem(PageInfo.PUBLISHER, value: publisher as AnyObject)
         return self
     }
 
-    public func publisher(publisher: String) -> Self {
-        super.addItem(field: PageInfo.PUBLISHER, value: publisher as AnyObject)
+    public func onsiteSearchTerm(_ onsiteSearchTerm: String) -> Self {
+        super.addItem(PageInfo.ONSITE_SEARCH_TERMS, value: onsiteSearchTerm as AnyObject)
         return self
     }
 
-    public func onsiteSearchTerm(onsiteSearchTerm: String) -> Self {
-        super.addItem(field: PageInfo.ONSITE_SEARCH_TERMS, value: onsiteSearchTerm as AnyObject)
+    public func onsiteSearchResults(_ onsiteSearchResults: NSNumber) -> Self {
+        super.addItem(PageInfo.ONSITE_SEARCH_RESULTS, value: onsiteSearchResults)
         return self
     }
 
-    public func onsiteSearchResults(onsiteSearchResults: String) -> Self {
-        super.addItem(field: PageInfo.ONSITE_SEARCH_RESULTS, value: onsiteSearchResults as AnyObject)
-        return self
-    }
-
-    override func returnSelf() -> PageInfo {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

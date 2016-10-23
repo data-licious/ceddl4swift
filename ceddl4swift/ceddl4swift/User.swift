@@ -8,11 +8,19 @@
 
 import Foundation
 
-public class User {
+public class User: NSObject, JSONProtocol {
 
-    fileprivate var parent: DigitalData
-    fileprivate var usersegment: Segment!
+    fileprivate var parent: DigitalData!
+
+    //MARK: - JSON segment
+    fileprivate var userSegment: Segment!
+
+    //MARK: - JSON profile
     fileprivate var userProfile: Array<UserProfile>!
+
+    override init() {
+        super.init()
+    }
 
     init(parent p: DigitalData) {
         parent = p
@@ -23,17 +31,17 @@ public class User {
     }
 
     public func segment() -> Segment {
-        if usersegment == nil {
-            usersegment = Segment(parent: self)
+        if userSegment == nil {
+            userSegment = Segment(parent: self)
         }
-        return usersegment
+        return userSegment
     }
 
-    public func addSegment(name: String, value: String) -> Self {
-        if usersegment == nil {
-            usersegment = Segment(parent: self)
+    public func addSegment(_ name: String, value: String) -> Self {
+        if userSegment == nil {
+            userSegment = Segment(parent: self)
         }
-        let _ = usersegment.segment(name: name, value: value as AnyObject)
+        _ = userSegment.segment(name, value: value as AnyObject)
         return self
     }
 
@@ -44,5 +52,20 @@ public class User {
         let usrProfile = UserProfile(parent: self)
         userProfile.append(usrProfile);
         return usrProfile;
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if userSegment != nil {
+            dictionary["segment"] = userSegment.getMap() as AnyObject
+        }
+        if userProfile != nil {
+            var userProfileDictionary = Array<Dictionary<String, AnyObject>>()
+            for userPro in userProfile {
+                userProfileDictionary.append(userPro.getMap())
+            }
+            dictionary["profile"] = userProfileDictionary as AnyObject
+        }
+        return dictionary
     }
 }

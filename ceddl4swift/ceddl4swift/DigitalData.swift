@@ -8,32 +8,52 @@
 
 import Foundation
 
-public class DigitalData: NSObject {
+public class DigitalData: NSObject, JSONProtocol {
 
     public static let VERSION_1_0: String = "1.0";
     public static let DEFAULT_SECURITY: String = "Default"
     public static let ROOT_JSO: String = "digitalData"
 
-    fileprivate var pageInstanceID: String!
-    fileprivate var ddPage: Page!
-    fileprivate var product: Array<Product>!
-    fileprivate var ddCart: Cart!
-    fileprivate var ddTransaction: Transaction!
-    fileprivate var event: Array<Event>!
-    fileprivate var component: Array<Component>!
-    fileprivate var user: Array<User>!
-    fileprivate var ddPrivacy: Privacy!
-    fileprivate var ddVersion: String!
+
+    // MARK : JSON - pageInstanceID
+    private var pageInstanceID: String!
+
+    // MARK : JSON - page
+    private var ddPage: Page!
+
+    // MARK : JSON - product
+    private var product: Array<Product>!
+
+    // MARK : JSON - cart
+    private var ddCart: Cart!
+
+    // MARK : JSON - transaction
+    private var ddTransaction: Transaction!
+
+    // MARK : JSON - event
+    private var event: Array<Event>!
+
+    // MARK : JSON - component
+    private var component: Array<Component>!
+
+    // MARK : JSON - user
+    private var user: Array<User>!
+
+    // MARK : JSON - privacy
+    private var ddPrivacy: Privacy!
+
+    // MARK : JSON - version
+    private var ddVersion: String!
 
     public static func create() -> DigitalData {
         return DigitalData()
     }
 
-    public static func create(pageInstanceID: String) -> DigitalData {
-        return DigitalData().pageInstanceId(pageInstanceID: pageInstanceID)
+    public static func create(_ pageInstanceID: String) -> DigitalData {
+        return DigitalData().pageInstanceId(pageInstanceID)
     }
 
-    public func pageInstanceId(pageInstanceID pId: String) -> DigitalData {
+    public func pageInstanceId(_ pId: String) -> DigitalData {
         pageInstanceID = pId
         return self
     }
@@ -45,7 +65,7 @@ public class DigitalData: NSObject {
         return ddPage
     }
 
-    public func setPage(page: Page) -> DigitalData {
+    public func setPage(_ page: Page) -> DigitalData {
         ddPage = page
         return self
     }
@@ -59,7 +79,7 @@ public class DigitalData: NSObject {
         return newProduct
     }
 
-    public func addProduct(newProduct: Product) -> DigitalData {
+    public func addProduct(_ newProduct: Product) -> DigitalData {
         if product == nil {
             product = Array<Product>()
         }
@@ -74,7 +94,7 @@ public class DigitalData: NSObject {
         return ddCart
     }
 
-    public func setCart(cart: Cart) -> DigitalData {
+    public func setCart(_ cart: Cart) -> DigitalData {
         ddCart = cart;
         return self
     }
@@ -86,7 +106,7 @@ public class DigitalData: NSObject {
         return ddTransaction;
     }
 
-    public func setTransaction(transaction: Transaction) -> DigitalData {
+    public func setTransaction(_ transaction: Transaction) -> DigitalData {
         ddTransaction = transaction;
         return self
     }
@@ -100,7 +120,7 @@ public class DigitalData: NSObject {
         return newEvent
     }
 
-    public func addEvent(newEvent: Event) -> DigitalData {
+    public func addEvent(_ newEvent: Event) -> DigitalData {
         if event == nil {
             event = Array<Event>()
         }
@@ -117,7 +137,7 @@ public class DigitalData: NSObject {
         return newComponent
     }
 
-    public func addComponent(newComponent: Component) -> DigitalData {
+    public func addComponent(_ newComponent: Component) -> DigitalData {
         if component == nil {
             component = Array<Component>()
         }
@@ -134,7 +154,7 @@ public class DigitalData: NSObject {
         return newUser
     }
 
-    public func addUser(newUser: User) -> DigitalData {
+    public func addUser(_ newUser: User) -> DigitalData {
         if user == nil {
             user = Array<User>()
         }
@@ -149,13 +169,13 @@ public class DigitalData: NSObject {
         return ddPrivacy
     }
 
-    public func setPrivacy(privacy: Privacy) -> DigitalData {
+    public func setPrivacy(_ privacy: Privacy) -> DigitalData {
         ddPrivacy = privacy
         return self
     }
     
-    public func version(version v: String) -> DigitalData {
-        ddVersion = v
+    public func version(_ version: String) -> DigitalData {
+        ddVersion = version
         return self
     }
     
@@ -163,9 +183,68 @@ public class DigitalData: NSObject {
         ddVersion = DigitalData.VERSION_1_0
         return self
     }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if pageInstanceID != nil {
+            dictionary["pageInstanceID"] = pageInstanceID as AnyObject
+        }
+        if ddPage != nil {
+            dictionary["page"] = ddPage.getMap() as AnyObject
+        }
+        if product != nil {
+            var productDictionary = Array<Dictionary<String, AnyObject>>()
+            for prod in product {
+                productDictionary.append(prod.getMap())
+            }
+            dictionary["product"] = productDictionary as AnyObject
+        }
+        if ddCart != nil {
+            dictionary["cart"] = ddCart.getMap() as AnyObject
+        }
+        if ddTransaction != nil {
+            dictionary["transaction"] = ddTransaction.getMap() as AnyObject
+        }
+        if event != nil {
+            var eventDictionary = Array<Dictionary<String, AnyObject>>()
+            for eve in event {
+                eventDictionary.append(eve.getMap())
+            }
+            dictionary["event"] = eventDictionary as AnyObject
+        }
+        if component != nil {
+            var componentDictionary = Array<Dictionary<String, AnyObject>>()
+            for comp in component {
+                componentDictionary.append(comp.getMap())
+            }
+            dictionary["component"] = componentDictionary as AnyObject
+        }
+        if user != nil {
+            var userDictionary = Array<Dictionary<String, AnyObject>>()
+            for usr in user {
+                userDictionary.append(usr.getMap())
+            }
+            dictionary["user"] = userDictionary as AnyObject
+        }
+        if ddPrivacy != nil {
+            dictionary["privacy"] = ddPrivacy.getMap() as AnyObject
+        }
+        if ddVersion != nil {
+            dictionary["version"] = ddVersion as AnyObject
+        }
+        return dictionary
+    }
     
     public func toString() throws -> String {
-        return ""
+        var digitalData = ""
+        let map = getMap()
+        let json = try JSONSerialization.data(withJSONObject: map, options: .prettyPrinted)
+        if let jsonString = String(data: json, encoding: .utf8) {
+            digitalData = jsonString
+        } else {
+            throw DigitalDataError.parsingFailed("Unable to parse the created object")
+        }
+        return digitalData
     }
     
     public func toStringWithRootObject() throws -> String {

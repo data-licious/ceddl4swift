@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ComponentInfo: BaseItem<ComponentInfo> {
+public class ComponentInfo: BaseItem<AnyObject> {
     fileprivate let COMPONENT_ID_NAME = "componentID"
     fileprivate var parent: Component
 
@@ -16,16 +16,16 @@ public class ComponentInfo: BaseItem<ComponentInfo> {
         parent = p
     }
 
-    public func endComponent() -> Component {
+    public func endComponentInfo() -> Component {
         return parent
     }
 
-    public func componentID(componentID: String) -> ComponentInfo {
-        addItem(field: COMPONENT_ID_NAME, value: componentID as AnyObject)
+    public func componentID(_ componentID: String) -> ComponentInfo {
+        addItem(COMPONENT_ID_NAME, value: componentID as AnyObject)
         return self
     }
 
-    override func returnSelf() -> ComponentInfo {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

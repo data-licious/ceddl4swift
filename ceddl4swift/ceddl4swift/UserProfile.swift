@@ -8,12 +8,20 @@
 
 import Foundation
 
-public class UserProfile {
+public class UserProfile: NSObject, JSONProtocol {
 
     fileprivate var parent: User
+
+    //MARK: - JSON profileInfo
     fileprivate var profileInformation: ProfileInfo<UserProfile>!
+
+    //MARK: - JSON address
     fileprivate var userAddress: Address<UserProfile>!
+
+    //MARK: - JSON socail
     fileprivate var userSocial: Social!
+
+    //MARK: - JSON attributes
     fileprivate var userAttributes: DAttributes<UserProfile>!
 
     init(parent p: User) {
@@ -45,11 +53,11 @@ public class UserProfile {
         return userSocial
     }
 
-    public func addSocial(name: String, value: String) -> UserProfile {
+    public func addSocial(_ name: String, value: String) -> UserProfile {
         if userSocial == nil {
             userSocial = Social(parent: self)
         }
-        let _ = userSocial.social(name: name, value: value as AnyObject)
+        _ = userSocial.social(name, value: value as AnyObject)
         return self
     }
 
@@ -60,11 +68,28 @@ public class UserProfile {
         return userAttributes
     }
 
-    public func addAttribute(name: String, value: String) -> UserProfile {
+    public func addAttribute(_ name: String, value: String) -> UserProfile {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)
         }
-        let _ = userAttributes.attribute(name: name, value: value as AnyObject)
+        _ = userAttributes.attribute(name, value: value as AnyObject)
         return self
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if profileInformation != nil {
+            dictionary["profileInfo"] = profileInformation.getMap() as AnyObject
+        }
+        if userAddress != nil {
+            dictionary["address"] = userAddress.getMap() as AnyObject
+        }
+        if userSocial != nil {
+            dictionary["social"] = userSocial.getMap() as AnyObject
+        }
+        if userAttributes != nil {
+            dictionary["attributes"] = userAttributes.getMap() as AnyObject
+        }
+        return dictionary
     }
 }

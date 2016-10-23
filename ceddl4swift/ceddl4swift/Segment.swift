@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Segment: BaseItem<Segment> {
+public class Segment: BaseItem<AnyObject> {
     fileprivate var parent: User
 
     init(parent p: User) {
@@ -19,11 +19,11 @@ public class Segment: BaseItem<Segment> {
         return parent
     }
 
-    public func segment(name: String, value: AnyObject) -> Segment {
-        return custom(name: name, value: value)
+    public func segment(_ name: String, value: AnyObject) -> Segment {
+        return custom(name, value: value) as! Segment
     }
 
-    override func returnSelf() -> Segment {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

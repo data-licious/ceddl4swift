@@ -8,11 +8,22 @@
 
 import Foundation
 
-public class Page {
+public class Page: NSObject, JSONProtocol {
+
     fileprivate var parent: DigitalData!
-    fileprivate var pageInfo: PageInfo!
-    fileprivate var category: Category<Page>!
-    fileprivate var attributes: DAttributes<Page>!
+
+    // MARK : JSON - pageInfo
+    fileprivate var pageInformation: PageInfo!
+
+    // MARK : JSON - category
+    fileprivate var pageCategory: Category<Page>!
+
+    // MARK : JSON - attributes
+    fileprivate var pageAttributes: DAttributes<Page>!
+
+    override init() {
+        super.init()
+    }
 
     init(parent p: DigitalData) {
         parent = p
@@ -22,48 +33,67 @@ public class Page {
         return parent
     }
 
-    public func pageInformation() -> PageInfo {
-        if pageInfo == nil {
-            pageInfo = PageInfo(parent: self)
+    public func pageInfo() -> PageInfo {
+        if pageInformation == nil {
+            pageInformation = PageInfo(parent: self)
         }
-        return pageInfo
+        return pageInformation
     }
 
-    public func pageCategory() -> Category<Page> {
-        if category == nil {
-            category = Category<Page>(parent: self)
+    public func category() -> Category<Page> {
+        if pageCategory == nil {
+            pageCategory = Category<Page>(parent: self)
         }
-        return category
+        return pageCategory
     }
 
-    public func pageAttributes() -> DAttributes<Page> {
-        if attributes == nil {
-            attributes = DAttributes<Page>(parent: self)
+    public func attributes() -> DAttributes<Page> {
+        if pageAttributes == nil {
+            pageAttributes = DAttributes<Page>(parent: self)
         }
-        return attributes
+        return pageAttributes
     }
 
-    public func addAttribute(name: String, value: AnyObject) -> Page {
-        if attributes == nil {
-            attributes = DAttributes<Page>(parent :self)
+    public func addAttribute(_ name: String, value: AnyObject) -> Page {
+        if pageAttributes == nil {
+            pageAttributes = DAttributes<Page>(parent :self)
         }
-        let _ = attributes.attribute(name: name, value: value)
+        if let dateValue = value as? Date {
+            let dateStringValue = dateToString(date: dateValue)
+            _ = pageAttributes.attribute(name, value: dateStringValue as AnyObject)
+        } else {
+            _ = pageAttributes.attribute(name, value: value)
+        }
         return self
     }
 
-    public func addPrimaryCategory(primaryCategory: String) -> Page {
-        if category == nil {
-            category =  Category<Page>(parent: self)
+    public func addPrimaryCategory(_ primaryCategory: String) -> Page {
+        if pageCategory == nil {
+            pageCategory =  Category<Page>(parent: self)
         }
-        let _ = category.primaryCategory(primaryCategory: primaryCategory)
+        _ = pageCategory.primaryCategory(primaryCategory)
         return self
     }
 
-    public func addCategory(name: String, value: AnyObject) -> Page {
-        if category == nil {
-            category = Category<Page>(parent: self)
+    public func addCategory(_ name: String, value: AnyObject) -> Page {
+        if pageCategory == nil {
+            pageCategory = Category<Page>(parent: self)
         }
-        let _ = category.category(name: name, value: value)
+        _ = pageCategory.category(name, value: value)
         return self
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if pageInformation != nil {
+            dictionary["pageInfo"] = pageInformation.getMap() as AnyObject
+        }
+        if pageCategory != nil {
+            dictionary["category"] = pageCategory.getMap() as AnyObject
+        }
+        if pageAttributes != nil {
+            dictionary["attributes"] = pageAttributes.getMap() as AnyObject
+        }
+        return dictionary
     }
 }

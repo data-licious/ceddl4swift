@@ -8,13 +8,23 @@
 
 import Foundation
 
-public class Item<T>: BaseItem<Item> {
+public class Item<T>: BaseItem<AnyObject> {
     fileprivate let QUANTITY = "quantity"
     fileprivate var parent: T
+
+    //MARK: - JSON productInfo
     fileprivate var productInformation: ProductInfo<Item<T>>!
+
+    //MARK: - JSON category
     fileprivate var itemCategory: Category<Item<T>>!
+
+    //MARK: - JSON price
     fileprivate var itemPrice: Price<Item<T>>!
+
+    //MARK: - JSON linkedProducts
     fileprivate var linkedProducts: Array<LinkedProduct<Item<T>>>!
+
+    //MARK: - JSON attributes
     fileprivate var itemAttributes: DAttributes<Item<T>>!
 
     init(parent p: T) {
@@ -39,8 +49,8 @@ public class Item<T>: BaseItem<Item> {
         return itemCategory
     }
 
-    public func quantity(quantity: NSNumber) -> Item<T> {
-        addItem(field: QUANTITY, value: quantity)
+    public func quantity(_ quantity: NSNumber) -> Item<T> {
+        addItem(QUANTITY, value: quantity)
         return self
     }
 
@@ -68,32 +78,56 @@ public class Item<T>: BaseItem<Item> {
         return itemAttributes;
     }
 
-    public func addAttribuut(name: String, value: AnyObject) -> Self {
+    public func addAttribuut(_ name: String, value: AnyObject) -> Self {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
         }
-        let _ = itemAttributes.attribute(name: name, value: value)
+        _ = itemAttributes.attribute(name, value: value)
         return self
     }
 
-    public func addPrimaryCategory(primaryCategory: String) -> Self {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
-        let _ = itemCategory.primaryCategory(primaryCategory: primaryCategory)
+        _ = itemCategory.primaryCategory(primaryCategory)
         return self;
     }
 
-    public func addCategory(name: String, value: AnyObject) -> Item<T> {
+    public func addCategory(_ name: String, value: AnyObject) -> Item<T> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
-        let _ = itemCategory.category(name: name, value: value)
+        _ = itemCategory.category(name, value: value)
         return self
     }
     
-    override func returnSelf() -> Item<T> {
+    override func returnSelf() -> AnyObject {
         return self
     }
-    
+
+    override func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        dictionary = super.getMap()
+        if productInformation != nil {
+            dictionary["productInfo"] = productInformation.getMap() as AnyObject
+        }
+        if itemCategory != nil {
+            dictionary["category"] = itemCategory.getMap() as AnyObject
+        }
+        if itemPrice != nil {
+            dictionary["price"] = itemPrice.getMap() as AnyObject
+        }
+        if linkedProducts != nil {
+            var linkedProductsDictionary = Array<Dictionary<String, AnyObject>>()
+            for linkedProduct in linkedProducts {
+                linkedProductsDictionary.append(linkedProduct.getMap())
+            }
+            dictionary["linkedProducts"] = linkedProductsDictionary as AnyObject
+        }
+        if itemAttributes != nil {
+            dictionary["attributes"] = itemAttributes.getMap() as AnyObject
+        }
+        return dictionary
+    }
 }

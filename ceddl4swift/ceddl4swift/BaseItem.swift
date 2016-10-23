@@ -8,9 +8,11 @@
 
 import Foundation
 
-public class BaseItem<T> {
+public class BaseItem<T>: NSObject {
 
     private var items: Dictionary<String, AnyObject> = [:]
+
+    //MARK: - JSON security
     private var security: Security!
     private var previousField: String!
 
@@ -19,37 +21,42 @@ public class BaseItem<T> {
     }
 
     internal func getMap() -> Dictionary<String, AnyObject> {
-        return items
+        var returnDict = items
+        if security != nil {
+            returnDict["security"] = security.getMap() as AnyObject
+        }
+        return returnDict
     }
 
-    internal func addItem(field: String, value: AnyObject) {
+    internal func addItem(_ field: String, value: AnyObject) {
         items[field] = value
         previousField = field
     }
 
-    public func security(accessCategories: Array<String>) throws {
+    public func security(_ accessCategories: Array<String>) throws -> T {
         if previousField == nil {
-            throw SDKError.illegalStateException("No field found to secure - Call addSecurity directly after setting a field to secure it.")
+            throw DigitalDataError.illegalStateException("No field found to secure - Call addSecurity directly after setting a field to secure it.")
         }
         if security == nil {
             security = Security()
         }
-        security.addSecurity(field: previousField, accessCategories: accessCategories)
+        security.addSecurity(previousField, accessCategories: accessCategories)
+        return returnSelf()
     }
 
     public func defaultSecurity() throws -> T {
         if previousField == nil {
-            throw SDKError.illegalStateException("No field found to secure - Call addDefaultSecurity directly after setting a field to secure it.")
+            throw DigitalDataError.illegalStateException("No field found to secure - Call addDefaultSecurity directly after setting a field to secure it.")
         }
         if security == nil {
             security = Security()
         }
-        security.addSecurity(field: previousField, accessCategories: [DigitalData.DEFAULT_SECURITY])
+        security.addSecurity(previousField, accessCategories: [DigitalData.DEFAULT_SECURITY])
         return returnSelf()
     }
 
-    public func custom(name: String, value: AnyObject) -> T {
-        addItem(field: name, value: value)
+    public func custom(_ name: String, value: AnyObject) -> T {
+        addItem(name, value: value)
         return returnSelf()
     }
 }

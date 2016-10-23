@@ -8,6 +8,7 @@
 
 import Foundation
 
-enum SDKError: Error {
+enum DigitalDataError: Error {
     case illegalStateException(String)
+    case parsingFailed(String)
 }

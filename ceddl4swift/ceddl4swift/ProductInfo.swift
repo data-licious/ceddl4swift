@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ProductInfo<T>: BaseItem<ProductInfo> {
+public class ProductInfo<T>: BaseItem<AnyObject> {
 
     private let PRODUCT_ID = "productID"
     private let PRODUCT_NAME = "productName"
@@ -27,61 +27,61 @@ public class ProductInfo<T>: BaseItem<ProductInfo> {
         parent = p
     }
 
-    public func endProduct() -> T {
+    public func endProductInfo() -> T {
         return parent
     }
 
-    public func productID(productID: String) -> ProductInfo<T> {
-        addItem(field: PRODUCT_ID, value: productID as AnyObject)
+    public func productID(_ productID: String) -> Self {
+        addItem(PRODUCT_ID, value: productID as AnyObject)
         return self
     }
 
-    public func productName(productName: String) -> ProductInfo<T> {
-        addItem(field: PRODUCT_NAME, value: productName as AnyObject)
+    public func productName(_ productName: String) -> Self {
+        addItem(PRODUCT_NAME, value: productName as AnyObject)
         return self
     }
 
-    public func description(description: String) -> ProductInfo<T> {
-        addItem(field: DESCRIPTION, value: description as AnyObject)
+    public func description(_ description: String) -> Self {
+        addItem(DESCRIPTION, value: description as AnyObject)
         return self
     }
 
-    public func productURL(productURL: String) -> ProductInfo<T> {
-        addItem(field: PRODUCT_URL, value: productURL as AnyObject)
+    public func productURL(_ productURL: String) -> Self {
+        addItem(PRODUCT_URL, value: productURL as AnyObject)
         return self
     }
 
-    public func productImage(productImage: String) -> ProductInfo<T> {
-        addItem(field: PRODUCT_IMAGE, value: productImage as AnyObject)
+    public func productImage(_ productImage: String) -> Self {
+        addItem(PRODUCT_IMAGE, value: productImage as AnyObject)
         return self
     }
 
-    public func productThumbnail(productThumbnail: String) -> ProductInfo<T> {
-        addItem(field: PRODUCT_THUMBNAIL, value: productThumbnail as AnyObject)
+    public func productThumbnail(_ productThumbnail: String) -> Self {
+        addItem(PRODUCT_THUMBNAIL, value: productThumbnail as AnyObject)
         return self
     }
 
-    public func manufacturer(manufacturer: String) -> ProductInfo<T> {
-        addItem(field: MANUFACTURER, value: manufacturer as AnyObject)
+    public func manufacturer(_ manufacturer: String) -> Self {
+        addItem(MANUFACTURER, value: manufacturer as AnyObject)
         return self
     }
 
-    public func sku(sku: String) -> ProductInfo<T> {
-        addItem(field: SKU, value: sku as AnyObject)
+    public func sku(_ sku: String) -> Self {
+        addItem(SKU, value: sku as AnyObject)
         return self
     }
 
-    public func color(color: String) -> ProductInfo<T> {
-        addItem(field: COLOR, value: color as AnyObject)
+    public func color(_ color: String) -> Self {
+        addItem(COLOR, value: color as AnyObject)
         return self
     }
 
-    public func size(color: String) -> ProductInfo<T> {
-        addItem(field: SIZE, value: size as AnyObject)
+    public func size(_ size: String) -> Self {
+        addItem(SIZE, value: size as AnyObject)
         return self
     }
 
-    override func returnSelf() -> ProductInfo<T> {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

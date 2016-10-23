@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class EventInfo: BaseItem<EventInfo> {
+public class EventInfo: BaseItem<AnyObject> {
 
     private let EVENT_NAME = "eventName"
     private let EVENT_ACTION = "eventAction"
@@ -28,47 +28,48 @@ public class EventInfo: BaseItem<EventInfo> {
         return parent
     }
 
-    public func eventName(eventName: String) -> Self {
-        addItem(field: EVENT_NAME, value: eventName as AnyObject)
+    public func eventName(_ eventName: String) -> Self {
+        addItem(EVENT_NAME, value: eventName as AnyObject)
         return self
     }
 
-    public func eventAction(eventAction: String) -> Self {
-        addItem(field: EVENT_ACTION, value: eventAction as AnyObject)
+    public func eventAction(_ eventAction: String) -> Self {
+        addItem(EVENT_ACTION, value: eventAction as AnyObject)
         return self
     }
 
-    public func eventPoints(eventPoints: NSNumber) -> Self {
-        addItem(field: EVENT_POINTS, value: eventPoints)
+    public func eventPoints(_ eventPoints: NSNumber) -> Self {
+        addItem(EVENT_POINTS, value: eventPoints)
         return self
     }
 
-    public func type(type: String) -> Self {
-        addItem(field: TYPE, value: type as AnyObject)
+    public func type(_ type: String) -> Self {
+        addItem(TYPE, value: type as AnyObject)
         return self
     }
 
-    public func timeStamp(timeStamp: String) -> Self {
-        addItem(field: TIME_STAMP, value: timeStamp as AnyObject)
+    public func timeStamp(_ timeStamp: String) -> Self {
+        addItem(TIME_STAMP, value: timeStamp as AnyObject)
         return self
     }
 
-    public func timeStamp(timeStamp: Date) -> Self {
-        addItem(field: TIME_STAMP, value: timeStamp as AnyObject)
+    public func timeStamp(_ timeStamp: Date) -> Self {
+        let stringFromDate = dateToString(date: timeStamp)
+        addItem(TIME_STAMP, value: stringFromDate as AnyObject)
         return self
     }
 
-    public func cause(cause: String) -> Self {
-        addItem(field: CAUSE, value: cause as AnyObject)
+    public func cause(_ cause: String) -> Self {
+        addItem(CAUSE, value: cause as AnyObject)
         return self
     }
 
-    public func effect(effect: String) -> Self {
-        addItem(field: EFFECT, value: effect as AnyObject)
+    public func effect(_ effect: String) -> Self {
+        addItem(EFFECT, value: effect as AnyObject)
         return self
     }
     
-    override func returnSelf() -> EventInfo {
+    override func returnSelf() -> AnyObject {
         return self
     }
     

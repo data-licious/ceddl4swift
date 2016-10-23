@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Social: BaseItem<Social> {
+public class Social: BaseItem<AnyObject> {
 
     fileprivate var parent: UserProfile
 
@@ -16,15 +16,15 @@ public class Social: BaseItem<Social> {
         parent = p
     }
 
-    public func endProfile() -> UserProfile {
+    public func endSocial() -> UserProfile {
         return parent
     }
 
-    public func social(name: String, value: AnyObject) -> Social {
-        return custom(name: name, value: value)
+    public func social(_ name: String, value: AnyObject) -> Social {
+        return custom(name, value: value) as! Social
     }
 
-    override func returnSelf() -> Social {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

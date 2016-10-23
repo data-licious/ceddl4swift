@@ -8,10 +8,16 @@
 
 import Foundation
 
-public class Privacy {
+public class Privacy: NSObject, JSONProtocol {
 
-    fileprivate var parent: DigitalData
+    fileprivate var parent: DigitalData!
+
+    //MARK: - JSON accessCategories
     fileprivate var accessCategories: Array<AccessCategory>!
+
+    override init() {
+        super.init()
+    }
 
     init(parent p: DigitalData) {
         parent = p
@@ -36,7 +42,19 @@ public class Privacy {
         }
         let accessCategory = AccessCategory(parent: self)
         accessCategories.append(accessCategory)
-        let _ = accessCategory.categoryName(categoryName: DigitalData.DEFAULT_SECURITY)
+        _ = accessCategory.categoryName(DigitalData.DEFAULT_SECURITY)
         return accessCategory
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if accessCategories != nil {
+            var accessDictionary = Array<Dictionary<String, AnyObject>>()
+            for accessCategory in accessCategories {
+                accessDictionary.append(accessCategory.getMap())
+            }
+            dictionary["accessCategories"] = accessDictionary as AnyObject
+        }
+        return dictionary
     }
 }

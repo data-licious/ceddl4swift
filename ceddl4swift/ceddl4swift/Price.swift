@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Price<T>: BaseItem<Price> {
+public class Price<T>: BaseItem<AnyObject> {
 
     private let BASE_PRICE = "basePrice"
     private let VOUCHER_CODE = "voucherCode"
@@ -31,57 +31,57 @@ public class Price<T>: BaseItem<Price> {
         return parent
     }
 
-    public func basePrice(basePrice: NSNumber) -> Self {
-        addItem(field: BASE_PRICE, value: basePrice)
+    public func basePrice(_ basePrice: NSNumber) -> Self {
+        addItem(BASE_PRICE, value: basePrice)
         return self
     }
 
-    public func voucherCode(voucherCode: String) -> Self {
-        addItem(field: VOUCHER_CODE, value: voucherCode as AnyObject)
+    public func voucherCode(_ voucherCode: String) -> Self {
+        addItem(VOUCHER_CODE, value: voucherCode as AnyObject)
         return self
     }
 
-    public func voucherDiscount(voucherDiscount: NSNumber) -> Self {
-        addItem(field: VOUCHER_DISCOUNT, value: voucherDiscount)
+    public func voucherDiscount(_ voucherDiscount: NSNumber) -> Self {
+        addItem(VOUCHER_DISCOUNT, value: voucherDiscount)
         return self
     }
 
-    public func currency(currency: String) -> Self {
-        addItem(field: CURRENCY, value: currency as AnyObject)
+    public func currency(_ currency: String) -> Self {
+        addItem(CURRENCY, value: currency as AnyObject)
         return self
     }
 
-    public func taxRate(taxRate: NSNumber) -> Self {
-        addItem(field: CURRENCY, value: taxRate as AnyObject)
+    public func taxRate(_ taxRate: NSNumber) -> Self {
+        addItem(TAX_RATE, value: taxRate as AnyObject)
         return self
     }
 
-    public func shipping(shipping: NSNumber) -> Self {
-        addItem(field: SHIPPING, value: shipping)
+    public func shipping(_ shipping: NSNumber) -> Self {
+        addItem(SHIPPING, value: shipping)
         return self
     }
 
-    public func shippingMethod(shippingMethod: String) -> Self {
-        addItem(field: SHIPPING_METHOD, value: shippingMethod as AnyObject)
+    public func shippingMethod(_ shippingMethod: String) -> Self {
+        addItem(SHIPPING_METHOD, value: shippingMethod as AnyObject)
         return self
     }
 
-    public func priceWithTax(priceWithTax: NSNumber) -> Self {
-        addItem(field: PRICE_WITH_TAX, value: priceWithTax)
+    public func priceWithTax(_ priceWithTax: NSNumber) -> Self {
+        addItem(PRICE_WITH_TAX, value: priceWithTax)
         return self
     }
 
-    public func cartTotal(cartTotal: NSNumber) -> Self {
-        addItem(field: CART_TOTAL, value: cartTotal)
+    public func cartTotal(_ cartTotal: NSNumber) -> Self {
+        addItem(CART_TOTAL, value: cartTotal)
         return self
     }
 
-    public func transactionTotal(transactionTotal: NSNumber) -> Self {
-        addItem(field: TRANSACTION_TOTAL, value: transactionTotal)
+    public func transactionTotal(_ transactionTotal: NSNumber) -> Self {
+        addItem(TRANSACTION_TOTAL, value: transactionTotal)
         return self
     }
 
-    override func returnSelf() -> Price<T> {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

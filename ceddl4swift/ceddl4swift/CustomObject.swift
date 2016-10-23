@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class CustomObject: BaseItem<CustomObject> {
-    override func returnSelf() -> CustomObject {
+public class CustomObject: BaseItem<AnyObject> {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

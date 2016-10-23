@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AccessCategory: BaseItem<AccessCategory> {
+public class AccessCategory: BaseItem<AnyObject> {
 
     fileprivate let CATEGORY_NAME = "categoryName"
     fileprivate let DOMAINS = "domains"
@@ -23,17 +23,17 @@ public class AccessCategory: BaseItem<AccessCategory> {
         return parent
     }
 
-    public func categoryName(categoryName: String) -> Self {
-        addItem(field: CATEGORY_NAME, value: categoryName as AnyObject)
+    public func categoryName(_ categoryName: String) -> Self {
+        addItem(CATEGORY_NAME, value: categoryName as AnyObject)
         return self
     }
 
-    public func domains(domains: Array<String>) -> Self {
-        addItem(field: DOMAINS, value: domains as AnyObject)
+    public func domains(_ domains: Array<String>) -> Self {
+        addItem(DOMAINS, value: domains as AnyObject)
         return self
     }
 
-    override func returnSelf() -> AccessCategory {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }

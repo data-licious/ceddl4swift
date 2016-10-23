@@ -8,15 +8,17 @@
 
 import Foundation
 
-public class LinkedProduct<T> {
+public class LinkedProduct<T>: NSObject, JSONProtocol {
     fileprivate var parent: T
+
+    // MARK: - JSON productInfo
     fileprivate var productInformation: ProductInfo<LinkedProduct<T>>!
 
     init(parent p: T) {
         parent = p
     }
 
-    public func endProduct() -> T {
+    public func endLinkedProduct() -> T {
         return parent
     }
 
@@ -25,5 +27,11 @@ public class LinkedProduct<T> {
             productInformation = ProductInfo<LinkedProduct<T>>(parent: self)
         }
         return productInformation
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        dictionary["productInfo"] = productInformation.getMap() as AnyObject
+        return dictionary
     }
 }

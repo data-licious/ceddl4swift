@@ -8,11 +8,22 @@
 
 import Foundation
 
-public class Event {
-    fileprivate var parent: DigitalData
+public class Event: NSObject, JSONProtocol {
+
+    fileprivate var parent: DigitalData!
+
+    // MARK: - JSON eventInfo
     fileprivate var eventInformation: EventInfo!
+
+    // MARK: - JSON category
     fileprivate var eventCategory: Category<Event>!
+
+    // MARK: - JSON attributes
     fileprivate var eventAttributes: DAttributes<Event>!
+
+    override init() {
+        super.init()
+    }
 
     init(parent p: DigitalData) {
         parent = p
@@ -43,27 +54,41 @@ public class Event {
         return eventAttributes
     }
 
-    public func addAttribute(name: String, value: AnyObject) -> Self {
+    public func addAttribute(_ name: String, value: AnyObject) -> Self {
         if eventAttributes == nil {
             eventAttributes = DAttributes<Event>(parent: self)
         }
-        let _ = eventAttributes.attribute(name: name, value: value)
+        _ = eventAttributes.attribute(name, value: value)
         return self
     }
 
-    public func addPrimaryCategory(primaryCategory: String) -> Self {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
-        let _ = eventCategory.primaryCategory(primaryCategory: primaryCategory)
+        _ = eventCategory.primaryCategory(primaryCategory)
         return self
     }
 
-    public func addCategory(name: String, value: AnyObject) -> Self {
+    public func addCategory(_ name: String, value: AnyObject) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
-        let _ = eventCategory.category(name: name, value: value)
+        _ = eventCategory.category(name, value: value)
         return self
+    }
+
+    func getMap() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        if eventInformation != nil {
+            dictionary["eventInfo"] = eventInformation.getMap() as AnyObject
+        }
+        if eventCategory != nil {
+            dictionary["category"] = eventCategory.getMap() as AnyObject
+        }
+        if eventAttributes != nil {
+            dictionary["attributes"] = eventAttributes.getMap() as AnyObject
+        }
+        return dictionary
     }
 }

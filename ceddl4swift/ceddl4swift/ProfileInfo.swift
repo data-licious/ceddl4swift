@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ProfileInfo<T>: BaseItem<ProfileInfo> {
+public class ProfileInfo<T>: BaseItem<AnyObject> {
 
     fileprivate let PROFILE_ID = "profileID"
     fileprivate let USER_NAME = "userName"
@@ -27,37 +27,37 @@ public class ProfileInfo<T>: BaseItem<ProfileInfo> {
         return parent
     }
 
-    public func profileID(profileID: String) -> Self {
-        addItem(field: PROFILE_ID, value: profileID as AnyObject)
+    public func profileID(_ profileID: String) -> Self {
+        addItem(PROFILE_ID, value: profileID as AnyObject)
         return self
     }
 
-    public func userName(userName: String) -> Self {
-        addItem(field: USER_NAME, value: userName as AnyObject)
+    public func userName(_ userName: String) -> Self {
+        addItem(USER_NAME, value: userName as AnyObject)
         return self
     }
 
-    public func email(email: String) -> Self {
-        addItem(field: EMAIL, value: email as AnyObject)
+    public func email(_ email: String) -> Self {
+        addItem(EMAIL, value: email as AnyObject)
         return self
     }
 
-    public func language(language: String) -> Self {
-        addItem(field: LANGUAGE, value: language as AnyObject)
+    public func language(_ language: String) -> Self {
+        addItem(LANGUAGE, value: language as AnyObject)
         return self
     }
 
-    public func returningStatus(returningStatus: String) ->  Self {
-        addItem(field: RETURNING_STATUS, value: returningStatus as AnyObject)
+    public func returningStatus(_ returningStatus: String) ->  Self {
+        addItem(RETURNING_STATUS, value: returningStatus as AnyObject)
         return self
     }
 
-    public func type(type: String) -> Self {
-        addItem(field: TYPE, value: type as AnyObject)
+    public func type(_ type: String) -> Self {
+        addItem(TYPE, value: type as AnyObject)
         return self
     }
 
-    override func returnSelf() -> ProfileInfo<T> {
+    override func returnSelf() -> AnyObject {
         return self
     }
 }
