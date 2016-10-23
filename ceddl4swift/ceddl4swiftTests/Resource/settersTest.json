@@ -1,0 +1,37 @@
+{
+  "pageInstanceID" : "pageInstanceID",
+  "page" : {
+    "pageInfo" : {
+      "pageID" : "pageID"
+    }
+  },
+  "product" : [ {
+    "productInfo" : {
+      "productID" : "productID"
+    }
+  } ],
+  "cart" : {
+    "cartID" : "cartID"
+  },
+  "transaction" : {
+    "transactionID" : "transactionID"
+  },
+  "event" : [ {
+    "eventInfo" : {
+      "eventName" : "ëventName"
+    }
+  } ],
+  "component" : [ {
+    "componentInfo" : {
+      "componentID" : "componentID"
+    }
+  } ],
+  "user" : [ { } ],
+  "privacy" : {
+    "accessCategories" : [ {
+      "categoryName" : "Default",
+      "domains" : [ "www.example.com" ]
+    } ]
+  },
+  "version" : "1.0"
+}
