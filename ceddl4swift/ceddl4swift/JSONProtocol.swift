@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Convert object to JSON structure...
 @objc protocol JSONProtocol {
     func getMap() -> Dictionary<String, AnyObject>
 }

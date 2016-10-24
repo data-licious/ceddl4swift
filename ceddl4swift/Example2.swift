@@ -8,6 +8,40 @@
 
 import Foundation
 
+/// Generates the following example from the CEDDL specification on page 9.
+///
+///      digitalData = {
+///          pageInstanceID: "ProductDetailPageNikonCamera-Staging",
+///          page:{
+///            pageInfo:{
+///         	 pageID: "Nikon Camera",
+///         	 destinationURL: "http://mysite.com/products/NikonCamera.html"
+///            },
+///            category:{
+///         	 primaryCategory: "Cameras",
+///         	 subCategory1: "Nikon",
+///         	 pageType: "ProductDetail"
+///            },
+///            attributes:{
+///         	 Seasonal: "Christmas"
+///            }
+///            product:[{
+///         	   productInfo:{
+///                  productName: "Nikon SLR Camera",
+///                  sku: "sku12345",
+///                  manufacturer: "Nikon"
+///                },
+///         	   category:{
+///                  primaryCategory: "Cameras"
+///                },
+///         	   attributes:{
+///                   productType: "Special Offer"
+///                }
+///            }]
+///          }
+///        }
+///      };
+
 public class Example2 {
 
     public func exampleFromSpec2() {

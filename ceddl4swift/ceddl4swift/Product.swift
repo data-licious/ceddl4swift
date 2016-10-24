@@ -12,30 +12,44 @@ public class Product: NSObject, JSONProtocol {
 
     fileprivate var parent: DigitalData!
 
-    // MARK : JSON - productInfo
+    //JSON id - productInfo
     fileprivate var productInformation: ProductInfo<Product>!
 
-    // MARK : JSON - category
+    //JSON id - category
     fileprivate var productCategory: Category<Product>!
 
-    // MARK : JSON - linkedProducts
+    //JSON id - linkedProducts
     fileprivate var linkedProducts: Array<LinkedProduct<Product>>!
 
-    // MARK : JSON - attributes
+    //JSON id - attributes
     fileprivate var productAttributes: DAttributes<Product>!
 
+
+    /// init `Product` object.
     override init() {
         super.init()
     }
 
+
+    /// init `Product` object.
+    /// - Parameter parent: associated DigitalData.
     init(parent p: DigitalData) {
         parent = p
     }
 
+
+    /// Returns to the parent object.
+    /// - Returns: Parent object
     public func endProduct() -> DigitalData {
         return parent
     }
 
+
+    /// Provides access to the ProductInfo object.
+    ///
+    /// ProductInfo describes the product.
+    ///
+    /// - Returns: the ProductInfo object for this Product
     public func productInfo() -> ProductInfo<Product> {
         if productInformation == nil {
             productInformation = ProductInfo<Product>(parent: self)
@@ -43,6 +57,18 @@ public class Product: NSObject, JSONProtocol {
         return productInformation
     }
 
+
+    /// Provides access to the Category object for the Product
+    ///
+    /// Because of the wide range of methods for categorization, an object
+    /// literal is provided for product categories.
+    ///
+    /// The name primaryCategory is RECOMMENDED if you included only one set of
+    /// categories for products, or for your primary set of categories. All other
+    /// names are optional and should fit the individual implementation needs in
+    /// both naming and values passed.
+    ///
+    /// - Returns:  Category object for this Product
     public func category() -> Category<Product> {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
@@ -50,6 +76,8 @@ public class Product: NSObject, JSONProtocol {
         return productCategory
     }
 
+    /// Adds a new Linked Product to the list of linked products.
+    /// - Returns: a new Linked Product
     public func addLinkedProduct() -> LinkedProduct<Product> {
         if linkedProducts == nil {
             linkedProducts = Array<LinkedProduct<Product>>()
@@ -59,6 +87,15 @@ public class Product: NSObject, JSONProtocol {
         return linkedProduct
     }
 
+
+    /// Provides access to the Attributes object for this Product.
+    ///
+    /// This object provides extensibility to the Product object. Any additional
+    /// dimensions related to the product can be provided. All names are optional
+    /// and should fit the individual implementation needs in both naming and
+    /// values passed.
+    ///
+    /// - Returns: Attributes object for this Product
     public func attributes() -> DAttributes<Product> {
         if productAttributes == nil {
             productAttributes = DAttributes<Product>(parent: self)
@@ -66,6 +103,11 @@ public class Product: NSObject, JSONProtocol {
         return productAttributes
     }
 
+
+    /// Directly adds a new attribute to the Product's attributes
+    /// - Parameter name: Name of the attribute
+    /// - Parameter value: Value for the attribute
+    /// - Returns: The current Product object
     public func addAttribute(_ name: String, value: AnyObject) -> Self {
         if productAttributes == nil {
             productAttributes = DAttributes<Product>(parent: self)
@@ -74,6 +116,10 @@ public class Product: NSObject, JSONProtocol {
         return self
     }
 
+
+    /// Directly adds the primary category to the Product's categories
+    /// - Parameter primaryCategory: Value for the primary category
+    /// - Returns: The current Product object
     public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
@@ -82,6 +128,11 @@ public class Product: NSObject, JSONProtocol {
         return self
     }
 
+
+    /// Directly adds a custom category to the Product categories
+    /// - Parameter name: Name of the category
+    /// - Parameter value: Value for the attribute
+    /// - Returns: The current Product object
     public func addCategory(_ name: String, value: AnyObject) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)

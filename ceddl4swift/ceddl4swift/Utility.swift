@@ -8,7 +8,8 @@
 
 import Foundation
 
-let dateToStringFormatter: DateFormatter = {
+/// Standard `Date` to `String` conversion
+public let dateToStringFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
     let timeZone = TimeZone(identifier: "GMT")
     dateFormatter.timeZone = timeZone
@@ -16,14 +17,17 @@ let dateToStringFormatter: DateFormatter = {
     return dateFormatter
 }()
 
+/// Checking the equality of `Dictionary`
 public func ==(lhs: [String: AnyObject], rhs: [String: AnyObject] ) -> Bool {
     return NSDictionary(dictionary: lhs).isEqual(to: rhs)
 }
 
+/// Converting date to `String`
 public func dateToString(date: Date) -> String {
     return dateToStringFormatter.string(from: date)
 }
 
+/// Adding the equality of `Dictionary`
 public func + <K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary<K,V> {
     var map = Dictionary<K,V>()
     for (k, v) in left {

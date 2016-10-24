@@ -23,7 +23,7 @@ class CartTest: XCTestCase {
 
     func testCart() {
         let digitalDataCart = ((((DigitalData.create().cart()
-            .cartID(cartID: "test1234"))
+            .cartID("test1234"))
             .price()
             .basePrice(200.20)
             .voucherCode("Alpha")

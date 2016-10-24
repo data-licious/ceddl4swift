@@ -11,17 +11,26 @@ import Foundation
 public class LinkedProduct<T>: NSObject, JSONProtocol {
     fileprivate var parent: T
 
-    // MARK: - JSON productInfo
+    //JSON id - productInfo
     fileprivate var productInformation: ProductInfo<LinkedProduct<T>>!
 
+
+    /// init `LinkedProduct` object.
+    /// - Parameter parent: reutrns parent object.
     init(parent p: T) {
         parent = p
     }
 
+
+    /// Returns to the parent object.
+    /// - Returns: Parent object
     public func endLinkedProduct() -> T {
         return parent
     }
 
+
+    /// Provides access to the linked product ProductInfo object.
+    /// - Returns: ProductInfo object for this LinkedProduct
     public func productInfo() -> ProductInfo<LinkedProduct<T>> {
         if productInformation == nil {
             productInformation = ProductInfo<LinkedProduct<T>>(parent: self)

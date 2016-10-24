@@ -12,10 +12,14 @@ public class BaseItem<T>: NSObject {
 
     private var items: Dictionary<String, AnyObject> = [:]
 
-    //MARK: - JSON security
+    //JSON id - security
     private var security: Security!
+
     private var previousField: String!
 
+
+    /// Returns the current Object.
+    /// - Returns: current object
     internal func returnSelf() -> T {
         return self as! T
     }
@@ -33,6 +37,21 @@ public class BaseItem<T>: NSObject {
         previousField = field
     }
 
+
+    /// Add the provided security access categories to the previous Object.
+    ///
+    /// This method will throw an IllegalStateException when a previous Object is not available.
+    ///
+    /// - Parameter accessCategories: Array of strings
+    /// - Returns: current object
+    ///
+    /// The following example adds security to `{page.pageInfo.pageName}`
+    ///
+    ///      DigitalData.create()
+    ///       .page()
+    ///	      .pageInfo()
+    ///       .pageName("Nikon SLR Camera")
+    ///       .security("Analytics", "Personalization")
     public func security(_ accessCategories: Array<String>) throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addSecurity directly after setting a field to secure it.")
@@ -44,6 +63,20 @@ public class BaseItem<T>: NSObject {
         return returnSelf()
     }
 
+
+    /// Add the Default security category to the previous Object.
+    ///
+    /// This method will throw an IllegalStateException when a previous Object is not available.
+    ///
+    /// - Returns: current object
+    ///
+    /// The following example adds security to `{page.pageInfo.pageName}`
+    ///
+    ///      DigitalData.create()
+    ///       .page()
+    ///	      .pageInfo()
+    ///       .pageName("Nikon SLR Camera")
+    ///       .defaultSecurity()
     public func defaultSecurity() throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addDefaultSecurity directly after setting a field to secure it.")
@@ -55,6 +88,11 @@ public class BaseItem<T>: NSObject {
         return returnSelf()
     }
 
+
+    /// Add a custom property.
+    /// - Parameter name: custom property name
+    /// - Parameter value: custom property value
+    /// - Returns: current object
     public func custom(_ name: String, value: AnyObject) -> T {
         addItem(name, value: value)
         return returnSelf()

@@ -8,39 +8,67 @@
 
 import Foundation
 
+///
+/// The Cart object carries details about a shopping cart or basket and the
+/// products that have been added to it. The Cart object is intended for a
+/// purchase that has not yet been completed. See the Transaction object for
+/// completed orders.
+///
+
 public class Cart: BaseItem<AnyObject> {
 
     fileprivate let CART_ID: String = "cartID"
     fileprivate var parent: DigitalData!
 
-    //MARK: - JSON cartID
+    //JSON id - cartID
     fileprivate var cartID: String!
 
-    //MARK: - JSON price
+    //JSON id - price
     fileprivate var cartPrice: Price<Cart>!
 
-    //MARK: - JSON attributes
+    //JSON id - attributes
     fileprivate var cartAttributes: DAttributes<Cart>!
 
-    //MARK: - JSON item
+    //JSON id - item
     fileprivate var cartItem: Array<Item<Cart>>!
 
+
+    /// init `Cart` object.
     override init() {
         super.init()
     }
 
+
+    /// init `Cart` object.
+    /// - Parameter parent: associated DigitalData.
     init(parent p: DigitalData) {
         parent = p
     }
 
+
+    ///  returns to the parent object.
+    /// - Returns: DigitalData
     public func endCart() -> DigitalData {
         return parent
     }
 
-    public func cartID(cartID: String) -> Cart {
+
+    ///  Set the cartID
+    /// - Parameter cartID: An identifier for a particular shopping cart.
+    /// - Returns: The current Cart Object.
+    public func cartID(_ cartID: String) -> Cart {
         return custom(CART_ID, value: cartID as AnyObject) as! Cart
     }
 
+
+    /// Provides access to the Price object.
+    ///
+    /// This object provides details of the cart price. The basePrice SHOULD be
+    /// the price of the items before applicable discounts, shipping charges, and
+    /// tax. The cartTotal SHOULD be the total price inclusive of all discounts,
+    /// charges, and tax.
+    ///
+    /// - Returns: The Price object for the current Cart
     public func price() -> Price<Cart> {
         if cartPrice == nil {
             cartPrice =  Price<Cart>(parent: self)
@@ -48,6 +76,15 @@ public class Cart: BaseItem<AnyObject> {
         return cartPrice
     }
 
+
+    /// Provides access to the Attributes object for this Cart.
+    ///
+    /// This object provides extensibility to the cart as a whole. Any additional
+    /// dimensions related to the cart can be provided. All names are optional
+    /// and should fit the individual implementation needs in both naming and
+    /// values passed.
+    ///
+    /// - Returns: Attributes object for this Cart
     public func attributes() -> DAttributes<Cart> {
         if cartAttributes == nil {
             cartAttributes = DAttributes<Cart>(parent: self)
@@ -55,6 +92,11 @@ public class Cart: BaseItem<AnyObject> {
         return cartAttributes
     }
 
+
+    /// Directly adds a new attribute to the Cart's attributes
+    /// - Parameter name: Name of the attribute
+    /// - Parameter value: Value for the attribute
+    /// - Returns: The current Cart object
     public func addAttribute(_ name: String, value: AnyObject) -> Cart {
         if cartAttributes == nil {
             cartAttributes = DAttributes<Cart>(parent: self)
@@ -63,6 +105,9 @@ public class Cart: BaseItem<AnyObject> {
         return self
     }
 
+
+    /// Adds a new item to the list of items in the Cart.
+    /// - Returns: A new Item object
     public func addItem() -> Item<Cart> {
         if cartItem == nil {
             cartItem = Array<Item<Cart>>()

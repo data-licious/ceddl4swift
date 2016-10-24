@@ -12,29 +12,41 @@ public class Item<T>: BaseItem<AnyObject> {
     fileprivate let QUANTITY = "quantity"
     fileprivate var parent: T
 
-    //MARK: - JSON productInfo
+    //JSON id - productInfo
     fileprivate var productInformation: ProductInfo<Item<T>>!
 
-    //MARK: - JSON category
+    //JSON id - category
     fileprivate var itemCategory: Category<Item<T>>!
 
-    //MARK: - JSON price
+    //JSON id - price
     fileprivate var itemPrice: Price<Item<T>>!
 
-    //MARK: - JSON linkedProducts
+    //JSON id - linkedProducts
     fileprivate var linkedProducts: Array<LinkedProduct<Item<T>>>!
 
-    //MARK: - JSON attributes
+    //JSON id - attributes
     fileprivate var itemAttributes: DAttributes<Item<T>>!
 
+
+    /// init an Item object.
+    /// - Parameter parent: The parent Object
     init(parent p: T) {
         parent = p
     }
 
+
+    /// Returns to the parent object.
+    /// - Returns: parent object
     public func endItem() -> T {
         return parent
     }
 
+
+    /// Provides access to the Item's ProductInfo object.
+    ///
+    /// This object describes the product.
+    ///
+    /// - Returns: ProductInfo object for this Item
     public func productInfo() -> ProductInfo<Item<T>> {
         if productInformation == nil {
             productInformation = ProductInfo<Item<T>>(parent: self)
@@ -42,6 +54,13 @@ public class Item<T>: BaseItem<AnyObject> {
         return productInformation
     }
 
+
+    /// Provides access to the Item's category object.
+    ///
+    /// Because of the wide range of methods for categorization, an object
+    /// literal is provided for product categories.
+    ///
+    /// - Returns: Category Object for this Item
     public func category() -> Category<Item<T>> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
@@ -49,11 +68,17 @@ public class Item<T>: BaseItem<AnyObject> {
         return itemCategory
     }
 
+
+    /// Sets the quantity of this particular item in the cart or transaction.
+    /// - Returns: current object
     public func quantity(_ quantity: NSNumber) -> Item<T> {
         addItem(QUANTITY, value: quantity)
         return self
     }
 
+
+    /// Provides access to the Item's price object.
+    /// - Returns: Price object for the Item
     public func price() -> Price<Item<T>> {
         if itemPrice == nil {
             itemPrice = Price<Item<T>>(parent: self)
@@ -61,6 +86,9 @@ public class Item<T>: BaseItem<AnyObject> {
         return itemPrice;
     }
 
+
+    /// Adds a new linked product to this Item.
+    /// - Returns: new LinkedProduct object for the Item
     public func addLinkedProduct() -> LinkedProduct<Item<T>> {
         if linkedProducts == nil {
             linkedProducts = Array<LinkedProduct<Item<T>>>();
@@ -71,6 +99,9 @@ public class Item<T>: BaseItem<AnyObject> {
         return linkedProduct;
     }
 
+
+    /// Provides access to the attributes object.
+    /// - Returns: Attributes object for this Item
     public func attributes() -> DAttributes<Item<T>> {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
@@ -78,6 +109,11 @@ public class Item<T>: BaseItem<AnyObject> {
         return itemAttributes;
     }
 
+
+    /// Directly adds a new attribute to the Item's attributes
+    /// - Parameter name: Name of the attribute
+    /// - Parameter value: Value for the attribute
+    /// - Returns: current Item.
     public func addAttribuut(_ name: String, value: AnyObject) -> Self {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
@@ -86,6 +122,10 @@ public class Item<T>: BaseItem<AnyObject> {
         return self
     }
 
+
+    /// Directly adds a new attribute to the Item's categories
+    /// - Parameter primaryCategory: Value for the primary category
+    /// - Returns: current oject.
     public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
@@ -94,6 +134,11 @@ public class Item<T>: BaseItem<AnyObject> {
         return self;
     }
 
+
+    /// Directly adds a custom category to the Page categories
+    /// - Parameter name: Name of the attribute
+    /// - Parameter value: Value for the attribute
+    /// - Returns: current object.
     public func addCategory(_ name: String, value: AnyObject) -> Item<T> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)

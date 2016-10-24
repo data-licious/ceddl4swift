@@ -8,6 +8,28 @@
 
 import Foundation
 
+/// Generates the following example from the CEDDL specification on page 9.
+///
+///      digitalData = {
+///         pageInstanceID: "MyHomePage-Production",
+///         page:{
+///          pageInfo:{
+///         	 pageID: "Home Page",
+///         	 destinationURL: "http://mysite.com/index.html"
+///          },
+///          category:{
+///         	 primaryCategory: "FAQ Pages",
+///         	 subCategory1: "ProductInfo",
+///         	 pageType: "FAQ"
+///          },
+///          attributes:{
+///         	 country: "US",
+///         	 language: "en-US"
+///          }
+///         }
+///       };
+///
+
 public class Example1 {
 
     public func exampleFromSpec1() {

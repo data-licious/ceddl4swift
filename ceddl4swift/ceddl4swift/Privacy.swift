@@ -12,21 +12,33 @@ public class Privacy: NSObject, JSONProtocol {
 
     fileprivate var parent: DigitalData!
 
-    //MARK: - JSON accessCategories
+    //JSON id - accessCategories
     fileprivate var accessCategories: Array<AccessCategory>!
 
+
+    /// init `Privacy` object.
     override init() {
         super.init()
     }
 
+
+    /// init `Privacy` object.
+    /// - Parameter parent: associated DigitalData.
     init(parent p: DigitalData) {
         parent = p
     }
 
+
+    /// Returns to the parent object.
+    /// - Returns: Parent object
     public func endPrivacy() -> DigitalData {
         return parent
     }
 
+
+    /// Adds a new AccessCategory.
+    ///
+    /// - Returns: a new AccessCategory object
     public func addAccessCategory() -> AccessCategory {
         if accessCategories == nil {
             accessCategories = Array<AccessCategory>()
@@ -36,6 +48,10 @@ public class Privacy: NSObject, JSONProtocol {
         return accessCategory
     }
 
+
+    /// Adds the Default AccessCategory.
+    ///
+    /// - Returns: a new AccessCategory object
     public func addDefaultAccessCategory() -> AccessCategory {
         if accessCategories == nil {
             accessCategories = Array<AccessCategory>()

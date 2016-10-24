@@ -8,9 +8,36 @@
 
 import Foundation
 
+/// Generates the healthcare inurance example from the CEDDL specification on
+/// page 31. This example extends CEDDL with 3 new Object (Member, Application and
+/// Plan).
+///
+/// We create a new class HealthcareDigitalData which extends DigitalData.
+/// HealthcareDigitalData adds Objects for (Member, Application and Plan) based on CustomObject.
+///
+
+
 public class HealthCareInsuranceExample {
 
     public func healthcareInsuranceExample() {
+
+        //	As another example, to collect data in the healthcare insurance industry, it might be more
+        //	convenient to model a few entirely new objects to capture relevant information.
+        //	One such bespoke object could be digitalData.member, used to capture a member’ s
+        //	account details with the institution, which may frequently be insurance related. This could
+        //	include sub-objects as detailed below:
+        //
+        //	Example Member object
+        //	digitalData.member[n] = {
+        //			memberID: "2723 49202388 01",
+        //			age: "41",
+        //		 	groupRelationship: "436378",
+        //			groupName: "Employer\, Inc.",
+        //			relation: "Spouse",
+        //			gender: "M",
+        //			originalJoinDate: "2011-01-21",
+        //			postalCode: "15214"
+        //	};
 
         let member: CustomObject = (((((((CustomObject()
             .custom("memberID", value: "2723 49202388 01" as AnyObject) as! CustomObject)
@@ -22,6 +49,19 @@ public class HealthCareInsuranceExample {
             .custom("originalJoinDate", value: "2011-01-21" as AnyObject) as! CustomObject)
             .custom("postalCode", value: "15214" as AnyObject) as! CustomObject
 
+        //	Other useful objects may include an Application object and a Plan object, with additional subobjects
+        //	under each.
+        //	Example Application object
+        //
+        //	digitalData.application = {
+        //		appID: "7565-2373-0086-8937",
+        //		source: "Telephone",
+        //		status: "Pending",
+        //		creationDate: new Date("December 15, 2013 14:20:02"),
+        //		completionDate: new Date("December 15, 2013 16:05:16")
+        //	};
+
+        // Setup the dates.
         let creationDate = getCreationDate()
         let completeDate = completionDate()
 
@@ -31,6 +71,16 @@ public class HealthCareInsuranceExample {
             .custom("status", value: "Pending" as AnyObject) as! CustomObject)
             .custom("creationDate", value: creationDate as AnyObject) as! CustomObject)
             .custom("completionDate", value: completeDate as AnyObject) as! CustomObject
+
+        // Example Plan object
+        //
+        // digitalData.plan = {
+        //		name: "Family Advantage 250",
+        // 		type: "EPO",
+        //		policyStatus: "Current",
+        //		premium: 454.25,
+        //		effectiveDate: new Date("December 15, 2013 16:05:16")
+        // };
 
         let effectiveDate = completionDate()
 
@@ -45,6 +95,8 @@ public class HealthCareInsuranceExample {
             .addMember(member)
             .setApplication(application)
             .setPlan(plan)
+
+        // Add an existing object
         _ = healthCareDigitalData.pageInstanceId("MyHomePage-Production")
 
         do {

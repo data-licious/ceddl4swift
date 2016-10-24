@@ -8,15 +8,38 @@
 
 import Foundation
 
+/**
+ * Generates the air travel booking website example from the CEDDL specification on page 30.
+ */
+
 public class Airline: NSObject {
 
     public func airlineExample() {
+
+        // Core flight reservation related data can be used to populate and extend the
+        // productInfo field as shown below:
+        //		digitalData.product[n].productInfo = {
+        //				 productID: "734565538989889110",
+        //				description: "Business Class One-Way Ticket",
+        //				originAirportCode: "RDU",
+        //				originCity: "Raleigh",
+        //				originState: "North Carolina",
+        //				originCounty: "USA",
+        //				destinationAirportCode: "BOM",
+        //				destinationState: "Maharashtra",
+        //				destinationCountry: "India",
+        //				departureDate: new Date("December 15, 2013 14:20:00"),
+        //				arrivalDate: new Date("December 16, 2013 21:40:00"),
+        //				numberOfTravellers: 1
+        //				};
+
+        // Setup the departureDate and arrivalDate.
 
         let calendar = Calendar(identifier: .gregorian)
 
         var departureDateComponent = DateComponents()
         departureDateComponent.year = 2013
-        departureDateComponent.month = 11
+        departureDateComponent.month = 12
         departureDateComponent.day = 15
         departureDateComponent.hour = 14
         departureDateComponent.minute = 20
@@ -25,7 +48,7 @@ public class Airline: NSObject {
 
         var arrivalDateComponent = DateComponents()
         arrivalDateComponent.year = 2013
-        arrivalDateComponent.month = 11
+        arrivalDateComponent.month = 12
         arrivalDateComponent.day = 16
         arrivalDateComponent.hour = 21
         arrivalDateComponent.minute = 40
@@ -47,6 +70,19 @@ public class Airline: NSObject {
             .custom("numberOfTravellers", value: 1 as AnyObject) as! ProductInfo<Product>)
             .endProductInfo()
 
+        // As a travel product is moved into the cart details such as price, fees, and currency can
+        // be used to populate or extend the digitalData.cart.price object literal. Additional
+        // fields such as a confirmation number might extend the digitalData.transaction
+        // objects.
+
+        //	digitalData.cart.price = {
+        //		basePrice: 1000.00,
+        //		currency: "USD",
+        //		fees: 200,
+        //		taxRate: 0.08,
+        //		cartTotal: 1296.00
+        //	};
+
         let cart = (Cart().price()
             .basePrice(1000.00)
             .currency("USD")
@@ -55,13 +91,21 @@ public class Airline: NSObject {
             .cartTotal(1296.00)
             .endPrice()
 
+        //	A "frequent flyer club" property could be added to the
+        //	digitalData.user[n].segment object to capture the customer’s loyalty
+        //	level:
+        //
+        //	digitalData.user[n].segment = {
+        //		frequentFlyerClub:
+        //	};
+
         let user = User().addSegment("frequentFlyerClub", value: "Silver Elite")
 
         let airlineDigitalData = DigitalData.create()
             .addProduct(product)
             .setCart(cart)
             .addUser(user)
-        
+
         do {
             let airlineDigitalDataDict = airlineDigitalData.getMap()
             if let json = try TestUtililty.loadJSONFromFile(type(of: self), name: "airline-example") as? Dictionary<String, AnyObject> {

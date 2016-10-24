@@ -12,26 +12,38 @@ public class UserProfile: NSObject, JSONProtocol {
 
     fileprivate var parent: User
 
-    //MARK: - JSON profileInfo
+    //JSON id - profileInfo
     fileprivate var profileInformation: ProfileInfo<UserProfile>!
 
-    //MARK: - JSON address
+    //JSON id - address
     fileprivate var userAddress: Address<UserProfile>!
 
-    //MARK: - JSON socail
+    //JSON id - socail
     fileprivate var userSocial: Social!
 
-    //MARK: - JSON attributes
+    //JSON id - attributes
     fileprivate var userAttributes: DAttributes<UserProfile>!
 
+
+    /// init an UserProfile object.
+    /// - Parameter parent: The parent Object
     init(parent p: User) {
         parent = p
     }
 
+
+    /// Returns to the parent Event object.
+    /// - Returns: parent Event object
     public func endProfile() -> User {
         return parent
     }
 
+
+    /// Provides access to the ProfileInfo object for the user profile.
+    ///
+    /// An extensible object for providing information about the user.
+    ///
+    /// - Retunrs: ProfileInfo object for the Profile
     public func profileInfo() -> ProfileInfo<UserProfile> {
         if profileInformation == nil {
             profileInformation = ProfileInfo<UserProfile>(parent: self)
@@ -39,6 +51,12 @@ public class UserProfile: NSObject, JSONProtocol {
         return profileInformation
     }
 
+
+    /// Provides access to the address information object for the user profile.
+    ///
+    /// An extensible object for providing address information for the user.
+    ///
+    /// - Retunrs: Address object for the Profile
     public func address() -> Address<UserProfile> {
         if userAddress == nil {
             userAddress = Address<UserProfile>(parent: self)
@@ -46,6 +64,12 @@ public class UserProfile: NSObject, JSONProtocol {
         return userAddress
     }
 
+
+    /// Provides access to the social information object for the user profile.
+    ///
+    /// An extensible object for providing address information for the user.
+    ///
+    /// - Retunrs: Social object for the Profile
     public func social() -> Social {
         if userSocial == nil {
             userSocial = Social(parent: self)
@@ -53,6 +77,11 @@ public class UserProfile: NSObject, JSONProtocol {
         return userSocial
     }
 
+
+    /// Directly adds new social information to the Profile.
+    /// - Parameter name: Name of the social information
+    /// - Parameter value: Value for the social information
+    /// - Returns: current UserProfile.
     public func addSocial(_ name: String, value: String) -> UserProfile {
         if userSocial == nil {
             userSocial = Social(parent: self)
@@ -61,6 +90,12 @@ public class UserProfile: NSObject, JSONProtocol {
         return self
     }
 
+
+    /// Provides access to the attributes object for the user profile.
+    ///
+    /// This object provides extensibility to the profile.
+    ///
+    /// - Retunrs: Attributes object for the Profile
     public func attributes() -> DAttributes<UserProfile> {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)
@@ -68,6 +103,11 @@ public class UserProfile: NSObject, JSONProtocol {
         return userAttributes
     }
 
+
+    /// Directly adds a new attribute to the Profile's Attributes
+    /// - Parameter name: Name of the attribute
+    /// - Parameter value: Value for the attribute
+    /// - Returns: current UserProfile.
     public func addAttribute(_ name: String, value: String) -> UserProfile {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)

@@ -12,23 +12,35 @@ public class TransactionProfile: NSObject, JSONProtocol {
 
     fileprivate var parent: Transaction
 
-    //MARK: - JSON profileInfo
+    //JSON id - profileInfo
     fileprivate var profileInformation: ProfileInfo<TransactionProfile>!
 
-    //MARK: - JSON address
+    //JSON id - address
     fileprivate var transactionAddress: Address<TransactionProfile>!
 
-    //MARK: - JSON shippingAddress
+    //JSON id - shippingAddress
     fileprivate var transactionShippingAddress: Address<TransactionProfile>!
 
+
+    /// init an TransactionProfile object.
+    /// - Parameter parent: The parent Object
     init(parent p: Transaction) {
         parent = p
     }
 
+
+    /// Returns to the parent Transaction object.
+    /// - Returns: parent Transaction object
     public func endProfile() -> Transaction {
         return parent
     }
 
+
+    /// Provides access to the ProfileInfo object
+    ///
+    ///An extensible object for providing information about the purchaser.
+    ///
+    /// - Retunrs: the ProfileInfo object for this Profile
     public func profileInfo() -> ProfileInfo<TransactionProfile> {
         if profileInformation == nil {
             profileInformation = ProfileInfo<TransactionProfile>(parent: self)
@@ -36,6 +48,13 @@ public class TransactionProfile: NSObject, JSONProtocol {
         return profileInformation
     }
 
+
+    /// Provides access to the Address object.
+    ///
+    /// An extensible object for providing (billing) address information for the
+    /// purchaser.
+    ///
+    /// - Retunrs: The Address object for this Profile
     public func address() -> Address<TransactionProfile> {
         if transactionAddress == nil {
             transactionAddress = Address<TransactionProfile>(parent: self)
@@ -43,6 +62,13 @@ public class TransactionProfile: NSObject, JSONProtocol {
         return transactionAddress
     }
 
+
+    /// Provides access to the Shipping Address object.
+    ///
+    /// An extensible object for providing shipping address information for the
+    /// purchaser.
+    ///
+    /// - Retunrs: The Shipping Address for this Profile
     public func shippingAddress() -> Address<TransactionProfile> {
         if transactionShippingAddress == nil {
             transactionShippingAddress = Address<TransactionProfile>(parent: self)

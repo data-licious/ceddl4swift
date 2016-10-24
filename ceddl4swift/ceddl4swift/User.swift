@@ -12,24 +12,42 @@ public class User: NSObject, JSONProtocol {
 
     fileprivate var parent: DigitalData!
 
-    //MARK: - JSON segment
+    //JSON id - segment
     fileprivate var userSegment: Segment!
 
-    //MARK: - JSON profile
+    //JSON id - profile
     fileprivate var userProfile: Array<UserProfile>!
 
+
+    /// init `Event` object.
     override init() {
         super.init()
     }
 
+
+    /// init `User` object.
+    /// - Parameter parent: associated DigitalData.
     init(parent p: DigitalData) {
         parent = p
     }
 
+
+    /// Returns to the parent object.
+    /// - Returns: Parent object
     public func endUser() -> DigitalData {
         return parent
     }
 
+
+    /// Provides access to the segment object.
+    ///
+    /// This object provides population segmentation information for the user,
+    /// such as premium versus basic membership, or any other forms of
+    /// segmentation that are desirable. Any additional dimensions related to the
+    /// user can be provided. All names are optional and should fit the
+    /// individual implementation needs in both naming and values passed.
+    ///
+    /// - Returns: Attributes object
     public func segment() -> Segment {
         if userSegment == nil {
             userSegment = Segment(parent: self)
@@ -37,6 +55,11 @@ public class User: NSObject, JSONProtocol {
         return userSegment
     }
 
+
+    /// Directly adds a new segment to the Profile.
+    /// - Parameter name: Name of the segment
+    /// - Parameter value: Value for the segment
+    /// - Returns: current User object.
     public func addSegment(_ name: String, value: String) -> Self {
         if userSegment == nil {
             userSegment = Segment(parent: self)
@@ -45,6 +68,15 @@ public class User: NSObject, JSONProtocol {
         return self
     }
 
+
+    /// Adds a new profile for the user.
+    ///
+    /// A profile for information about the user, typically associated with a
+    /// registered user. (Although typically a user might have only a single
+    /// profile, this object is an array and can capture multiple profiles per
+    /// user.)
+    ///
+    /// - Returns: a new (User)Profile object
     public func addProfile() -> UserProfile {
         if userProfile == nil {
             userProfile = Array<UserProfile>()
