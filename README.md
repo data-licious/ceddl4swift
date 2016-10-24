@@ -1,4 +1,4 @@
-# Ceddl4j - A CEDDL data layer from Swift #
+# Ceddl4swift - A CEDDL data layer from Swift #
 
 ## About Ceddl4swift ##
 
