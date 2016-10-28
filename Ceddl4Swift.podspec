@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Ceddl4Swift"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Ceddl4swift is a CEDDL data layer from Swift"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "Ceddl4swift is a swift framework for a website data layer compliant with the CEDDL specification"
+  s.description  = "Ceddl4Swift is a swift framework for a website data layer compliant with the CEDDL specification"
 
   s.homepage     = "http://www.w3.org/2013/12/ceddl-201312.pdf"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
