@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Ceddl4Swift"
-  s.version      = "1.0.1"
+  s.version      = "1.0.0"
   s.summary      = "Ceddl4swift is a CEDDL data layer from Swift"
 
   # This description is used to generate tags and improve search results.
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
