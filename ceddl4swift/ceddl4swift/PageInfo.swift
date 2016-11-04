@@ -150,7 +150,7 @@ open class PageInfo: BaseItem<AnyObject> {
     /// - Parameter issueDate: Date
     /// - Returns: current PageInfo
     open func issueDate(_ issueDate: Date) -> Self {
-        let issueDateString = dateToString(date: issueDate)
+        let issueDateString = dateToString(issueDate)
         super.addItem(PageInfo.ISSUE_DATE, value: issueDateString as AnyObject)
         return self
     }
@@ -169,7 +169,7 @@ open class PageInfo: BaseItem<AnyObject> {
     /// - Parameter effectiveDate: Date
     /// - Returns: current PageInfo
     open func effectiveDate(_ effectiveDate: Date) -> Self {
-        let effectiveDateString = dateToString(date: effectiveDate)
+        let effectiveDateString = dateToString(effectiveDate)
         super.addItem(PageInfo.EFFECTIVE_DATE, value: effectiveDateString as AnyObject)
         return self
     }
@@ -188,7 +188,7 @@ open class PageInfo: BaseItem<AnyObject> {
     /// - Parameter expiryDate: Date
     /// - Returns: current PageInfo
     open func expiryDate(_ expiryDate: Date) -> Self {
-        let expiryDateString = dateToString(date: expiryDate)
+        let expiryDateString = dateToString(expiryDate)
         super.addItem(PageInfo.EXPIRY_DATE, value: expiryDateString as AnyObject)
         return self
     }

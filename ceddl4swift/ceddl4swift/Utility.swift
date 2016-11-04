@@ -23,7 +23,7 @@ public func ==(lhs: [String: AnyObject], rhs: [String: AnyObject] ) -> Bool {
 }
 
 /// Converting date to `String`
-public func dateToString(date: Date) -> String {
+public func dateToString(_ date: Date) -> String {
     return dateToStringFormatter.string(from: date)
 }
 
@@ -39,7 +39,7 @@ public func + <K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary
     return map
 }
 
-public class Utility {
+open class Utility {
     class func loadJSONFromFile(_ type: Swift.AnyClass, name: String) throws -> Any {
         let filePath = Bundle(for: type).path(forResource: name, ofType: "json")
         let fileURL = URL(fileURLWithPath: filePath!)

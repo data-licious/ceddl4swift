@@ -87,7 +87,7 @@ open class EventInfo: BaseItem<AnyObject> {
     /// - Parameter timeStamp: Date
     /// - Returns: current EventInfo
     open func timeStamp(_ timeStamp: Date) -> Self {
-        let stringFromDate = dateToString(date: timeStamp)
+        let stringFromDate = dateToString(timeStamp)
         addItem(TIME_STAMP, value: stringFromDate as AnyObject)
         return self
     }

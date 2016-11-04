@@ -97,7 +97,7 @@ open class Page: NSObject, JSONProtocol {
             pageAttributes = DAttributes<Page>(parent :self)
         }
         if let dateValue = value as? Date {
-            let dateStringValue = dateToString(date: dateValue)
+            let dateStringValue = dateToString(dateValue)
             _ = pageAttributes.attribute(name, value: dateStringValue as AnyObject)
         } else {
             _ = pageAttributes.attribute(name, value: value)
