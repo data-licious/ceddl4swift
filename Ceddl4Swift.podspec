@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Ceddl4Swift"
-  s.version      = "1.0.0"
-  s.summary      = "Ceddl4swift is a CEDDL data layer from Swift"
+  s.version      = "2.3.0"
+  s.summary      = "Ceddl4swift is a CEDDL data layer from Swift 2.3"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -128,7 +128,7 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   # s.requires_arc = true
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '2.3' }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
