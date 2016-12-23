@@ -9,9 +9,9 @@
 import Foundation
 
 /// Standard `Date` to `String` conversion
-public let dateToStringFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    let timeZone = TimeZone(identifier: "GMT")
+public let dateToStringFormatter: NSDateFormatter = {
+    let dateFormatter = NSDateFormatter()
+    let timeZone = NSTimeZone(name: "GMT")
     dateFormatter.timeZone = timeZone
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     return dateFormatter
@@ -19,12 +19,12 @@ public let dateToStringFormatter: DateFormatter = {
 
 /// Checking the equality of `Dictionary`
 public func ==(lhs: [String: AnyObject], rhs: [String: AnyObject] ) -> Bool {
-    return NSDictionary(dictionary: lhs).isEqual(to: rhs)
+    return NSDictionary(dictionary: lhs).isEqual(rhs)
 }
 
 /// Converting date to `String`
-public func dateToString(_ date: Date) -> String {
-    return dateToStringFormatter.string(from: date)
+public func dateToString(date: NSDate) -> String {
+    return dateToStringFormatter.stringFromDate(date)
 }
 
 /// Adding the equality of `Dictionary`
@@ -39,12 +39,12 @@ public func + <K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary
     return map
 }
 
-open class Utility {
-    class func loadJSONFromFile(_ type: Swift.AnyClass, name: String) throws -> Any {
-        let filePath = Bundle(for: type).path(forResource: name, ofType: "json")
-        let fileURL = URL(fileURLWithPath: filePath!)
-        let data = try Data(contentsOf: fileURL)
-        let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
+public class Utility {
+    class func loadJSONFromFile(type: Swift.AnyClass, name: String) throws -> Any {
+        let filePath = NSBundle(forClass: type).pathForResource(name, ofType: "json")
+        let fileURL = NSURL(fileURLWithPath: filePath!)
+        let data = NSData(contentsOfURL: fileURL)
+        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
         return json
     }
 }

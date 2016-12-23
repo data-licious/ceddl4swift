@@ -35,25 +35,25 @@ public class Airline: NSObject {
 
         // Setup the departureDate and arrivalDate.
 
-        let calendar = Calendar(identifier: .gregorian)
+        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
 
-        var departureDateComponent = DateComponents()
+        let departureDateComponent = NSDateComponents()
         departureDateComponent.year = 2013
         departureDateComponent.month = 12
         departureDateComponent.day = 15
         departureDateComponent.hour = 14
         departureDateComponent.minute = 20
         departureDateComponent.second = 0
-        let departureDate = calendar.date(from: departureDateComponent)
+        let departureDate = calendar!.dateFromComponents(departureDateComponent)
 
-        var arrivalDateComponent = DateComponents()
+        let arrivalDateComponent = NSDateComponents()
         arrivalDateComponent.year = 2013
         arrivalDateComponent.month = 12
         arrivalDateComponent.day = 16
         arrivalDateComponent.hour = 21
         arrivalDateComponent.minute = 40
         arrivalDateComponent.second = 0
-        let arrivalDate = calendar.date(from: arrivalDateComponent)
+        let arrivalDate = calendar!.dateFromComponents(arrivalDateComponent)
 
         let product = ((((((((((Product().productInfo()
             .productID("734565538989889110")
@@ -65,8 +65,8 @@ public class Airline: NSObject {
             .custom("destinationAirportCode", value: "BOM" as AnyObject) as! ProductInfo<Product>)
             .custom("destinationState", value: "Maharashtra" as AnyObject) as! ProductInfo<Product>)
             .custom("destinationCountry", value: "India" as AnyObject) as! ProductInfo<Product>)
-            .custom("departureDate", value: departureDate as AnyObject) as! ProductInfo<Product>)
-            .custom("arrivalDate", value: arrivalDate as AnyObject) as! ProductInfo<Product>)
+            .custom("departureDate", value: departureDate as! AnyObject) as! ProductInfo<Product>)
+            .custom("arrivalDate", value: arrivalDate as! AnyObject) as! ProductInfo<Product>)
             .custom("numberOfTravellers", value: 1 as AnyObject) as! ProductInfo<Product>)
             .endProductInfo()
 
@@ -108,7 +108,7 @@ public class Airline: NSObject {
 
         do {
             let airlineDigitalDataDict = airlineDigitalData.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "airline-example") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "airline-example") as? Dictionary<String, AnyObject> {
                 assert(airlineDigitalDataDict == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

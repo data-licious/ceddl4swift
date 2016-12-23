@@ -8,21 +8,21 @@
 
 import Foundation
 
-open class UserProfile: NSObject, JSONProtocol {
+public class UserProfile: NSObject, JSONProtocol {
 
-    fileprivate var parent: User
+    private var parent: User
 
     //JSON id - profileInfo
-    fileprivate var profileInformation: ProfileInfo<UserProfile>!
+    private var profileInformation: ProfileInfo<UserProfile>!
 
     //JSON id - address
-    fileprivate var userAddress: Address<UserProfile>!
+    private var userAddress: Address<UserProfile>!
 
     //JSON id - socail
-    fileprivate var userSocial: Social!
+    private var userSocial: Social!
 
     //JSON id - attributes
-    fileprivate var userAttributes: DAttributes<UserProfile>!
+    private var userAttributes: DAttributes<UserProfile>!
 
 
     /// init an UserProfile object.
@@ -34,7 +34,7 @@ open class UserProfile: NSObject, JSONProtocol {
 
     /// Returns to the parent Event object.
     /// - Returns: parent Event object
-    open func endProfile() -> User {
+    public func endProfile() -> User {
         return parent
     }
 
@@ -44,7 +44,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// An extensible object for providing information about the user.
     ///
     /// - Retunrs: ProfileInfo object for the Profile
-    open func profileInfo() -> ProfileInfo<UserProfile> {
+    public func profileInfo() -> ProfileInfo<UserProfile> {
         if profileInformation == nil {
             profileInformation = ProfileInfo<UserProfile>(parent: self)
         }
@@ -57,7 +57,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// An extensible object for providing address information for the user.
     ///
     /// - Retunrs: Address object for the Profile
-    open func address() -> Address<UserProfile> {
+    public func address() -> Address<UserProfile> {
         if userAddress == nil {
             userAddress = Address<UserProfile>(parent: self)
         }
@@ -70,7 +70,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// An extensible object for providing address information for the user.
     ///
     /// - Retunrs: Social object for the Profile
-    open func social() -> Social {
+    public func social() -> Social {
         if userSocial == nil {
             userSocial = Social(parent: self)
         }
@@ -82,7 +82,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// - Parameter name: Name of the social information
     /// - Parameter value: Value for the social information
     /// - Returns: current UserProfile.
-    open func addSocial(_ name: String, value: String) -> UserProfile {
+    public func addSocial(name: String, value: String) -> UserProfile {
         if userSocial == nil {
             userSocial = Social(parent: self)
         }
@@ -96,7 +96,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// This object provides extensibility to the profile.
     ///
     /// - Retunrs: Attributes object for the Profile
-    open func attributes() -> DAttributes<UserProfile> {
+    public func attributes() -> DAttributes<UserProfile> {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)
         }
@@ -108,7 +108,7 @@ open class UserProfile: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current UserProfile.
-    open func addAttribute(_ name: String, value: String) -> UserProfile {
+    public func addAttribute(name: String, value: String) -> UserProfile {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)
         }
@@ -116,7 +116,7 @@ open class UserProfile: NSObject, JSONProtocol {
         return self
     }
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if profileInformation != nil {
             dictionary["profileInfo"] = profileInformation.getMap() as AnyObject

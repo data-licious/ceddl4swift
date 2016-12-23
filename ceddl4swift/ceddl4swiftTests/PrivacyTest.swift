@@ -30,7 +30,7 @@ class PrivacyTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataPrivacy.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "privacyTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "privacyTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

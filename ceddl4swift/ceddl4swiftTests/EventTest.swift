@@ -13,7 +13,7 @@ class EventTest: XCTestCase {
 
     func testEvent() {
 
-        let date = Date(timeIntervalSince1970: 0)
+        let date = NSDate(timeIntervalSince1970: 0)
 
         let digitalDataEvent = (DigitalData.create()
             .addEvent().eventInfo()
@@ -37,7 +37,7 @@ class EventTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataEvent.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "eventTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "eventTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
@@ -50,7 +50,7 @@ class EventTest: XCTestCase {
 
     func testEvent2() {
 
-        let date = Date(timeIntervalSince1970: 0)
+        let date = NSDate(timeIntervalSince1970: 0)
 
         let digitalDataEvent = (DigitalData.create()
             .addEvent().eventInfo()
@@ -78,7 +78,7 @@ class EventTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataEvent.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "eventTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "eventTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

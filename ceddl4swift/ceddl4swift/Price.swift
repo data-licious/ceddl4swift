@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Price<T>: BaseItem<AnyObject> {
+public class Price<T>: BaseItem<AnyObject> {
 
     private let BASE_PRICE = "basePrice"
     private let VOUCHER_CODE = "voucherCode"
@@ -33,7 +33,7 @@ open class Price<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    open func endPrice() -> T {
+    public func endPrice() -> T {
         return parent
     }
 
@@ -44,7 +44,7 @@ open class Price<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter basePrice: NSNumber
     /// - Retunrs: current Object
-    open func basePrice(_ basePrice: NSNumber) -> Self {
+    public func basePrice(basePrice: NSNumber) -> Self {
         addItem(BASE_PRICE, value: basePrice)
         return self
     }
@@ -53,7 +53,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the voucherCode.
     /// - Parameter voucherCode: String
     /// - Returns: current Object
-    open func voucherCode(_ voucherCode: String) -> Self {
+    public func voucherCode(voucherCode: String) -> Self {
         addItem(VOUCHER_CODE, value: voucherCode as AnyObject)
         return self
     }
@@ -62,7 +62,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the voucherDiscount.
     /// - Parameter voucherDiscount: NSNumber
     /// - Returns: current Object
-    open func voucherDiscount(_ voucherDiscount: NSNumber) -> Self {
+    public func voucherDiscount(voucherDiscount: NSNumber) -> Self {
         addItem(VOUCHER_DISCOUNT, value: voucherDiscount)
         return self
     }
@@ -74,7 +74,7 @@ open class Price<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter currency: String
     /// - Returns: current Object
-    open func currency(_ currency: String) -> Self {
+    public func currency(currency: String) -> Self {
         addItem(CURRENCY, value: currency as AnyObject)
         return self
     }
@@ -83,7 +83,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the taxRate.
     /// - Parameter taxRate: NSNumber
     /// - Returns: current Object
-    open func taxRate(_ taxRate: NSNumber) -> Self {
+    public func taxRate(taxRate: NSNumber) -> Self {
         addItem(TAX_RATE, value: taxRate as AnyObject)
         return self
     }
@@ -92,7 +92,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the taxRate.
     /// - Parameter taxRate: NSNumber
     /// - Returns: current Object
-    open func shipping(_ shipping: NSNumber) -> Self {
+    public func shipping(shipping: NSNumber) -> Self {
         addItem(SHIPPING, value: shipping)
         return self
     }
@@ -101,7 +101,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the shippingMethod.
     /// - Parameter shippingMethod: String
     /// - Returns: current Object
-    open func shippingMethod(_ shippingMethod: String) -> Self {
+    public func shippingMethod(shippingMethod: String) -> Self {
         addItem(SHIPPING_METHOD, value: shippingMethod as AnyObject)
         return self
     }
@@ -110,7 +110,7 @@ open class Price<T>: BaseItem<AnyObject> {
     /// Sets the priceWithTax.
     /// - Parameter priceWithTax: NSNumber
     /// - Returns: current Object
-    open func priceWithTax(_ priceWithTax: NSNumber) -> Self {
+    public func priceWithTax(priceWithTax: NSNumber) -> Self {
         addItem(PRICE_WITH_TAX, value: priceWithTax)
         return self
     }
@@ -123,7 +123,7 @@ open class Price<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter cartTotal: NSNumber
     /// - Returns: current Object
-    open func cartTotal(_ cartTotal: NSNumber) -> Self {
+    public func cartTotal(cartTotal: NSNumber) -> Self {
         addItem(CART_TOTAL, value: cartTotal)
         return self
     }
@@ -136,12 +136,12 @@ open class Price<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter transactionTotal: NSNumber
     /// - Returns: current Object
-    open func transactionTotal(_ transactionTotal: NSNumber) -> Self {
+    public func transactionTotal(transactionTotal: NSNumber) -> Self {
         addItem(TRANSACTION_TOTAL, value: transactionTotal)
         return self
     }
 
-    open override func returnSelf() -> AnyObject {
+    public override func returnSelf() -> AnyObject {
         return self
     }
 }

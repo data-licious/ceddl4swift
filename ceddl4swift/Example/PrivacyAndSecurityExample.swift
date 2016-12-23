@@ -72,7 +72,7 @@ public class PrivacyAndSecurityExample {
                 .endCart()
 
             let airlineDigitalDataDict = privacySecurityDigitalData.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "privacyandsecurity-example") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "privacyandsecurity-example") as? Dictionary<String, AnyObject> {
                 assert(airlineDigitalDataDict == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

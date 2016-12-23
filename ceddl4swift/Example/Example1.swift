@@ -47,7 +47,7 @@ public class Example1 {
 
         do {
             let example1DigitalDataDict = example1DigitalData.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "example1") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "example1") as? Dictionary<String, AnyObject> {
                 assert(example1DigitalDataDict == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

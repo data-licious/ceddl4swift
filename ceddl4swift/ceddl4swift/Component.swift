@@ -14,18 +14,18 @@ import Foundation
 /// component such as playing the video would be an Event.
 ///
 
-open class Component: NSObject, JSONProtocol {
+public class Component: NSObject, JSONProtocol {
 
-    fileprivate var parent: DigitalData!
+    private var parent: DigitalData!
 
     //JSON id -  componentInfo
-    fileprivate var componentInformation: ComponentInfo!
+    private var componentInformation: ComponentInfo!
 
     //JSON id - category
-    fileprivate var componentCategory: Category<Component>!
+    private var componentCategory: Category<Component>!
 
     //JSON id - attributes
-    fileprivate var componentAttributes: DAttributes<Component>!
+    private var componentAttributes: DAttributes<Component>!
 
 
     /// init `Component` object.
@@ -43,7 +43,7 @@ open class Component: NSObject, JSONProtocol {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    open func endComponent() -> DigitalData {
+    public func endComponent() -> DigitalData {
         return parent
     }
 
@@ -53,7 +53,7 @@ open class Component: NSObject, JSONProtocol {
     /// ComponentInfo describes the component.
     ///
     /// - Returns: The ComponentInfo object for this Component
-    open func componentInfo() -> ComponentInfo {
+    public func componentInfo() -> ComponentInfo {
         if componentInformation == nil {
             componentInformation = ComponentInfo(parent: self)
         }
@@ -67,7 +67,7 @@ open class Component: NSObject, JSONProtocol {
     /// literal is provided for component categories.
     ///
     /// - Returns: Category object for the Component
-    open func category() -> Category<Component> {
+    public func category() -> Category<Component> {
         if componentCategory == nil {
             componentCategory = Category<Component>(parent: self)
         }
@@ -83,7 +83,7 @@ open class Component: NSObject, JSONProtocol {
     /// naming and values passed.
     ///
     /// - Returns: Attributes object for the Component
-    open func attributes() -> DAttributes<Component> {
+    public func attributes() -> DAttributes<Component> {
         if componentAttributes == nil {
             componentAttributes = DAttributes<Component>(parent: self)
         }
@@ -95,7 +95,7 @@ open class Component: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Component.
-    open func addAttribuut(_ name: String, value: AnyObject) -> Component {
+    public func addAttribuut(name: String, value: AnyObject) -> Component {
         if componentAttributes == nil {
             componentAttributes = DAttributes<Component>(parent: self)
         }
@@ -107,7 +107,7 @@ open class Component: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Component's categories.
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current Component.
-    open func addPrimaryCategory(_ primaryCategory: String) -> Component {
+    public func addPrimaryCategory(primaryCategory: String) -> Component {
         if componentCategory == nil {
             componentCategory = Category<Component>(parent: self)
         }
@@ -120,7 +120,7 @@ open class Component: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current Component.
-    open func addCategory(_ name: String, value: AnyObject) -> Component {
+    public func addCategory(name: String, value: AnyObject) -> Component {
         if componentCategory == nil {
             componentCategory = Category<Component>(parent: self)
         }
@@ -128,7 +128,7 @@ open class Component: NSObject, JSONProtocol {
         return self
     }
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if componentInformation != nil {
             dictionary["componentInfo"] = componentInformation.getMap() as AnyObject

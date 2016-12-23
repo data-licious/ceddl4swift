@@ -101,7 +101,7 @@ public class HealthCareInsuranceExample {
 
         do {
             let healthCareDigitalData = healthCareDigitalData.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "healthcare-example") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "healthcare-example") as? Dictionary<String, AnyObject> {
                 assert(healthCareDigitalData == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
@@ -111,27 +111,27 @@ public class HealthCareInsuranceExample {
         }
     }
 
-    private func completionDate() -> Date {
-        let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = DateComponents()
+    private func completionDate() -> NSDate {
+        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+        let dateComponents = NSDateComponents()
         dateComponents.year = 2013
         dateComponents.month = 11
         dateComponents.day = 15
         dateComponents.hour = 16
         dateComponents.minute = 05
         dateComponents.second = 16
-        return calendar.date(from: dateComponents)!
+        return calendar!.dateFromComponents(dateComponents)!
     }
 
-    private func getCreationDate() -> Date {
-        let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = DateComponents()
+    private func getCreationDate() -> NSDate {
+        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+        let dateComponents = NSDateComponents()
         dateComponents.year = 2013
         dateComponents.month = 11
         dateComponents.day = 15
         dateComponents.hour = 14
         dateComponents.minute = 20
         dateComponents.second = 02
-        return calendar.date(from: dateComponents)!
+        return calendar!.dateFromComponents(dateComponents)!
     }
 }

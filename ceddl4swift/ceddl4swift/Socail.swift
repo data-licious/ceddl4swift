@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class Social: BaseItem<AnyObject> {
+public class Social: BaseItem<AnyObject> {
 
-    fileprivate var parent: UserProfile
+    private var parent: UserProfile
 
 
     /// init an Social object.
@@ -22,7 +22,7 @@ open class Social: BaseItem<AnyObject> {
 
     /// Returns to the parent UserProfile object.
     /// - Returns: parent UserProfile object
-    open func endSocial() -> UserProfile {
+    public func endSocial() -> UserProfile {
         return parent
     }
 
@@ -31,11 +31,11 @@ open class Social: BaseItem<AnyObject> {
     /// - Parameter name: Name of the social information item
     /// - Parameter value: value of the social information item
     /// - Returns: current Social Object
-    open func social(_ name: String, value: AnyObject) -> Social {
+    public func social(name: String, value: AnyObject) -> Social {
         return custom(name, value: value) as! Social
     }
 
-    open override func returnSelf() -> AnyObject {
+    public override func returnSelf() -> AnyObject {
         return self
     }
 }
