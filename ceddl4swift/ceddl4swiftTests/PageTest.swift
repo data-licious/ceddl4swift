@@ -13,7 +13,7 @@ class PageTest: XCTestCase {
 
     func testPage() {
 
-        let date = Date(timeIntervalSince1970: 0)
+        let date = NSDate(timeIntervalSince1970: 0)
 
         let digitalDataPage = DigitalData.create()
             .pageInstanceId("ProductDetailPageNikonCamera-Staging")
@@ -54,7 +54,7 @@ class PageTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataPage.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "pageTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "pageTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
@@ -67,7 +67,7 @@ class PageTest: XCTestCase {
 
     func testPage2() {
 
-        let date = Date(timeIntervalSince1970: 0)
+        let date = NSDate(timeIntervalSince1970: 0)
 
         let digitalDataPage = DigitalData.create()
             .pageInstanceId("ProductDetailPageNikonCamera-Staging")
@@ -108,7 +108,7 @@ class PageTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataPage.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "pageTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "pageTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

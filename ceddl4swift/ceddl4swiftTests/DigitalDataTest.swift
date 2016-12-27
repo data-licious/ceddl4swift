@@ -49,7 +49,7 @@ class DigitalDataTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalData.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "settersTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "settersTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

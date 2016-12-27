@@ -8,18 +8,18 @@
 
 import Foundation
 
-open class Event: NSObject, JSONProtocol {
+public class Event: NSObject, JSONProtocol {
 
-    fileprivate var parent: DigitalData!
+    private var parent: DigitalData!
 
     //JSON id - eventInfo
-    fileprivate var eventInformation: EventInfo!
+    private var eventInformation: EventInfo!
 
     //JSON id - category
-    fileprivate var eventCategory: Category<Event>!
+    private var eventCategory: Category<Event>!
 
     //JSON id - attributes
-    fileprivate var eventAttributes: DAttributes<Event>!
+    private var eventAttributes: DAttributes<Event>!
 
     
     /// init `Event` object.
@@ -37,7 +37,7 @@ open class Event: NSObject, JSONProtocol {
     
     /// Returns to the parent object.
     /// - Returns: Parent object
-    open func endEvent() -> DigitalData {
+    public func endEvent() -> DigitalData {
         return parent
     }
 
@@ -47,7 +47,7 @@ open class Event: NSObject, JSONProtocol {
     /// This object describes the event.
     ///
     /// - Returns: EventInfo Object for this Event
-    open func eventInfo() -> EventInfo {
+    public func eventInfo() -> EventInfo {
         if eventInformation == nil {
             eventInformation = EventInfo(parent: self)
         }
@@ -57,7 +57,7 @@ open class Event: NSObject, JSONProtocol {
 
     /// Provides access to the Category object for the Event.
     /// - Returns: Category object for this Event
-    open func category() -> Category<Event> {
+    public func category() -> Category<Event> {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
@@ -67,7 +67,7 @@ open class Event: NSObject, JSONProtocol {
 
     /// Provides access to the Attributes object for this Event.
     /// - Returns: Attributes object for this Event
-    open func attributes() -> DAttributes<Event> {
+    public func attributes() -> DAttributes<Event> {
         if eventAttributes == nil {
             eventAttributes = DAttributes<Event>(parent: self)
         }
@@ -79,7 +79,7 @@ open class Event: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Event.
-    open func addAttribute(_ name: String, value: AnyObject) -> Self {
+    public func addAttribute(name: String, value: AnyObject) -> Self {
         if eventAttributes == nil {
             eventAttributes = DAttributes<Event>(parent: self)
         }
@@ -91,7 +91,7 @@ open class Event: NSObject, JSONProtocol {
     /// Directly sets the primary category for the Event
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current Event.
-    open func addPrimaryCategory(_ primaryCategory: String) -> Self {
+    public func addPrimaryCategory(primaryCategory: String) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
@@ -103,7 +103,7 @@ open class Event: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current Event.
-    open func addCategory(_ name: String, value: AnyObject) -> Self {
+    public func addCategory(name: String, value: AnyObject) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
@@ -111,7 +111,7 @@ open class Event: NSObject, JSONProtocol {
         return self
     }
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if eventInformation != nil {
             dictionary["eventInfo"] = eventInformation.getMap() as AnyObject

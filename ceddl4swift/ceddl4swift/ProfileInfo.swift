@@ -8,16 +8,16 @@
 
 import Foundation
 
-open class ProfileInfo<T>: BaseItem<AnyObject> {
+public class ProfileInfo<T>: BaseItem<AnyObject> {
 
-    fileprivate let PROFILE_ID = "profileID"
-    fileprivate let USER_NAME = "userName"
-    fileprivate let EMAIL = "email"
-    fileprivate let LANGUAGE = "language"
-    fileprivate let RETURNING_STATUS = "returningStatus"
-    fileprivate let TYPE = "type"
+    private let PROFILE_ID = "profileID"
+    private let USER_NAME = "userName"
+    private let EMAIL = "email"
+    private let LANGUAGE = "language"
+    private let RETURNING_STATUS = "returningStatus"
+    private let TYPE = "type"
 
-    fileprivate var parent: T
+    private var parent: T
 
 
     /// init an ProfileInfo object.
@@ -29,7 +29,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    open func endProfileInfo() -> T {
+    public func endProfileInfo() -> T {
         return parent
     }
 
@@ -37,7 +37,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the profileID.
     /// - Parameter profileID: String
     /// - Returns: current Object
-    open func profileID(_ profileID: String) -> Self {
+    public func profileID(profileID: String) -> Self {
         addItem(PROFILE_ID, value: profileID as AnyObject)
         return self
     }
@@ -46,7 +46,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the userName.
     /// - Parameter userName: String
     /// - Returns: current Object
-    open func userName(_ userName: String) -> Self {
+    public func userName(userName: String) -> Self {
         addItem(USER_NAME, value: userName as AnyObject)
         return self
     }
@@ -55,7 +55,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the email.
     /// - Parameter email: String
     /// - Returns: current Object
-    open func email(_ email: String) -> Self {
+    public func email(email: String) -> Self {
         addItem(EMAIL, value: email as AnyObject)
         return self
     }
@@ -64,7 +64,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the language.
     /// - Parameter language: String
     /// - Returns: current Object
-    open func language(_ language: String) -> Self {
+    public func language(language: String) -> Self {
         addItem(LANGUAGE, value: language as AnyObject)
         return self
     }
@@ -73,7 +73,7 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the returningStatus.
     /// - Parameter returningStatus: String
     /// - Returns: current Object
-    open func returningStatus(_ returningStatus: String) ->  Self {
+    public func returningStatus(returningStatus: String) ->  Self {
         addItem(RETURNING_STATUS, value: returningStatus as AnyObject)
         return self
     }
@@ -82,12 +82,12 @@ open class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the type.
     /// - Parameter type: String
     /// - Returns: current Object
-    open func type(_ type: String) -> Self {
+    public func type(type: String) -> Self {
         addItem(TYPE, value: type as AnyObject)
         return self
     }
 
-    open override func returnSelf() -> AnyObject {
+    public override func returnSelf() -> AnyObject {
         return self
     }
 }

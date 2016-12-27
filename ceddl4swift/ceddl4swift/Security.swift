@@ -8,11 +8,11 @@
 
 import Foundation
 
-open class Security: NSObject {
+public class Security: NSObject {
 
     private var items: Dictionary<String, AnyObject> = [:]
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         return items
     }
 
@@ -28,7 +28,7 @@ open class Security: NSObject {
     ///
     /// - Parameter field: Fieldname
     /// - Parameter accessCategories: accessCategories for field.
-    open func addSecurity(_ field: String, accessCategories: Array<String>) {
+    public func addSecurity(field: String, accessCategories: Array<String>) {
         if accessCategories.count == 1 {
             items[field] = accessCategories[0] as AnyObject
         } else if accessCategories.count > 1 {

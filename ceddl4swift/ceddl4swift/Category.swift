@@ -10,7 +10,7 @@ import Foundation
 
 let PRIMARY_CATEGORY_NAME = "primaryCategory"
 
-open class Category<T>: BaseItem<AnyObject> {
+public class Category<T>: BaseItem<AnyObject> {
 
     private var parent: T
 
@@ -24,7 +24,7 @@ open class Category<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    open func endCategory() -> T {
+    public func endCategory() -> T {
         return parent
     }
 
@@ -36,7 +36,7 @@ open class Category<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter primaryCategory value: primaryCategory value value
     /// - Returns: current object
-    open func primaryCategory(_ primaryCategory: String) -> Category {
+    public func primaryCategory(primaryCategory: String) -> Category {
         return super.custom(PRIMARY_CATEGORY_NAME, value: primaryCategory as AnyObject) as! Category<T>
     }
 
@@ -45,11 +45,11 @@ open class Category<T>: BaseItem<AnyObject> {
     /// - Parameter name: Custom attribute name
     /// - Parameter value: Custom attribute value
     /// - Returns: current object
-    open func category(_ name: String, value: AnyObject) -> Category {
+    public func category(name: String, value: AnyObject) -> Category {
         return super.custom(name, value: value) as! Category<T>
     }
 
-    open override func returnSelf() -> AnyObject {
+    public override func returnSelf() -> AnyObject {
         return self
     }
 }

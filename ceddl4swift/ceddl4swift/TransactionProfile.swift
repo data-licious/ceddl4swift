@@ -8,18 +8,18 @@
 
 import Foundation
 
-open class TransactionProfile: NSObject, JSONProtocol {
+public class TransactionProfile: NSObject, JSONProtocol {
 
-    fileprivate var parent: Transaction
+    private var parent: Transaction
 
     //JSON id - profileInfo
-    fileprivate var profileInformation: ProfileInfo<TransactionProfile>!
+    private var profileInformation: ProfileInfo<TransactionProfile>!
 
     //JSON id - address
-    fileprivate var transactionAddress: Address<TransactionProfile>!
+    private var transactionAddress: Address<TransactionProfile>!
 
     //JSON id - shippingAddress
-    fileprivate var transactionShippingAddress: Address<TransactionProfile>!
+    private var transactionShippingAddress: Address<TransactionProfile>!
 
 
     /// init an TransactionProfile object.
@@ -31,7 +31,7 @@ open class TransactionProfile: NSObject, JSONProtocol {
 
     /// Returns to the parent Transaction object.
     /// - Returns: parent Transaction object
-    open func endProfile() -> Transaction {
+    public func endProfile() -> Transaction {
         return parent
     }
 
@@ -41,7 +41,7 @@ open class TransactionProfile: NSObject, JSONProtocol {
     ///An extensible object for providing information about the purchaser.
     ///
     /// - Retunrs: the ProfileInfo object for this Profile
-    open func profileInfo() -> ProfileInfo<TransactionProfile> {
+    public func profileInfo() -> ProfileInfo<TransactionProfile> {
         if profileInformation == nil {
             profileInformation = ProfileInfo<TransactionProfile>(parent: self)
         }
@@ -55,7 +55,7 @@ open class TransactionProfile: NSObject, JSONProtocol {
     /// purchaser.
     ///
     /// - Retunrs: The Address object for this Profile
-    open func address() -> Address<TransactionProfile> {
+    public func address() -> Address<TransactionProfile> {
         if transactionAddress == nil {
             transactionAddress = Address<TransactionProfile>(parent: self)
         }
@@ -69,14 +69,14 @@ open class TransactionProfile: NSObject, JSONProtocol {
     /// purchaser.
     ///
     /// - Retunrs: The Shipping Address for this Profile
-    open func shippingAddress() -> Address<TransactionProfile> {
+    public func shippingAddress() -> Address<TransactionProfile> {
         if transactionShippingAddress == nil {
             transactionShippingAddress = Address<TransactionProfile>(parent: self)
         }
         return transactionShippingAddress
     }
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if profileInformation != nil {
             dictionary["profileInfo"] = profileInformation.getMap() as AnyObject

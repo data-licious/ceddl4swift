@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class BaseItem<T>: NSObject {
+public class BaseItem<T>: NSObject {
 
     private var items: Dictionary<String, AnyObject> = [:]
 
@@ -32,7 +32,7 @@ open class BaseItem<T>: NSObject {
         return returnDict
     }
 
-    internal func addItem(_ field: String, value: AnyObject) {
+    internal func addItem(field: String, value: AnyObject) {
         items[field] = value
         previousField = field
     }
@@ -52,7 +52,7 @@ open class BaseItem<T>: NSObject {
     ///	      .pageInfo()
     ///       .pageName("Nikon SLR Camera")
     ///       .security("Analytics", "Personalization")
-    open func security(_ accessCategories: Array<String>) throws -> T {
+    public func security(accessCategories: Array<String>) throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addSecurity directly after setting a field to secure it.")
         }
@@ -77,7 +77,7 @@ open class BaseItem<T>: NSObject {
     ///	      .pageInfo()
     ///       .pageName("Nikon SLR Camera")
     ///       .defaultSecurity()
-    open func defaultSecurity() throws -> T {
+    public func defaultSecurity() throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addDefaultSecurity directly after setting a field to secure it.")
         }
@@ -93,7 +93,7 @@ open class BaseItem<T>: NSObject {
     /// - Parameter name: custom property name
     /// - Parameter value: custom property value
     /// - Returns: current object
-    open func custom(_ name: String, value: AnyObject) -> T {
+    public func custom(name: String, value: AnyObject) -> T {
         addItem(name, value: value)
         return returnSelf()
     }

@@ -8,18 +8,18 @@
 
 import Foundation
 
-open class Page: NSObject, JSONProtocol {
+public class Page: NSObject, JSONProtocol {
 
-    fileprivate var parent: DigitalData!
+     var parent: DigitalData!
 
     //JSON id - pageInfo
-    fileprivate var pageInformation: PageInfo!
+    private var pageInformation: PageInfo!
 
     //JSON id - category
-    fileprivate var pageCategory: Category<Page>!
+    private var pageCategory: Category<Page>!
 
     //JSON id - attributes
-    fileprivate var pageAttributes: DAttributes<Page>!
+    private var pageAttributes: DAttributes<Page>!
 
 
     /// init
@@ -38,7 +38,7 @@ open class Page: NSObject, JSONProtocol {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    open func endPage() -> DigitalData {
+    public func endPage() -> DigitalData {
         return parent
     }
 
@@ -48,7 +48,7 @@ open class Page: NSObject, JSONProtocol {
     /// This object describes the Page.
     ///
     /// - Returns: PageInfo Object for this Page
-    open func pageInfo() -> PageInfo {
+    public func pageInfo() -> PageInfo {
         if pageInformation == nil {
             pageInformation = PageInfo(parent: self)
         }
@@ -65,7 +65,7 @@ open class Page: NSObject, JSONProtocol {
     /// fit the individual implementation needs in both naming and values passed.
     ///
     /// - Returns: Category object for this Page
-    open func category() -> Category<Page> {
+    public func category() -> Category<Page> {
         if pageCategory == nil {
             pageCategory = Category<Page>(parent: self)
         }
@@ -80,7 +80,7 @@ open class Page: NSObject, JSONProtocol {
     /// naming and values passed.
     ///
     /// - Returns: Attributes object for this Page
-    open func attributes() -> DAttributes<Page> {
+    public func attributes() -> DAttributes<Page> {
         if pageAttributes == nil {
             pageAttributes = DAttributes<Page>(parent: self)
         }
@@ -92,11 +92,11 @@ open class Page: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current object
-    open func addAttribute(_ name: String, value: AnyObject) -> Page {
+    public func addAttribute(name: String, value: AnyObject) -> Page {
         if pageAttributes == nil {
             pageAttributes = DAttributes<Page>(parent :self)
         }
-        if let dateValue = value as? Date {
+        if let dateValue = value as? NSDate {
             let dateStringValue = dateToString(dateValue)
             _ = pageAttributes.attribute(name, value: dateStringValue as AnyObject)
         } else {
@@ -109,7 +109,7 @@ open class Page: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Page's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current object.
-    open func addPrimaryCategory(_ primaryCategory: String) -> Page {
+    public func addPrimaryCategory(primaryCategory: String) -> Page {
         if pageCategory == nil {
             pageCategory =  Category<Page>(parent: self)
         }
@@ -122,7 +122,7 @@ open class Page: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current object.
-    open func addCategory(_ name: String, value: AnyObject) -> Page {
+    public func addCategory(name: String, value: AnyObject) -> Page {
         if pageCategory == nil {
             pageCategory = Category<Page>(parent: self)
         }
@@ -130,7 +130,7 @@ open class Page: NSObject, JSONProtocol {
         return self
     }
 
-    open func getMap() -> Dictionary<String, AnyObject> {
+    public func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if pageInformation != nil {
             dictionary["pageInfo"] = pageInformation.getMap() as AnyObject

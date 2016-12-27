@@ -37,7 +37,7 @@ class ComponentTest: XCTestCase {
         
         do {
             let digitalDataDictionary = digitalDataComponent.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "componentTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "componentTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
@@ -75,7 +75,7 @@ class ComponentTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataComponent.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "componentTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "componentTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")

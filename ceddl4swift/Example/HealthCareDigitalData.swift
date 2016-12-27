@@ -10,11 +10,11 @@ import Foundation
 
 public class HealthCareDigitalData: DigitalData {
 
-    fileprivate var member: Array<CustomObject>!
-    fileprivate var application: CustomObject!
-    fileprivate var plan: CustomObject!
+    private var member: Array<CustomObject>!
+    private var application: CustomObject!
+    private var plan: CustomObject!
 
-    public func addMember(_ newMember: CustomObject) -> Self {
+    public func addMember(newMember: CustomObject) -> Self {
         if member == nil {
             member = Array<CustomObject>()
         }
@@ -22,12 +22,12 @@ public class HealthCareDigitalData: DigitalData {
         return self
     }
 
-    public func setApplication(_ app: CustomObject) -> Self {
+    public func setApplication(app: CustomObject) -> Self {
         application = app
         return self
     }
 
-    public func setPlan(_ plan: CustomObject) -> Self {
+    public func setPlan(plan: CustomObject) -> Self {
         self.plan = plan
         return self
     }

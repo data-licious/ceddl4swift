@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class Segment: BaseItem<AnyObject> {
+public class Segment: BaseItem<AnyObject> {
 
-    fileprivate var parent: User
+    private var parent: User
 
 
     /// init an Segment object.
@@ -22,7 +22,7 @@ open class Segment: BaseItem<AnyObject> {
 
     /// Returns to the parent User object.
     /// - Returns: parent User object
-    open func endSegment() -> User {
+    public func endSegment() -> User {
         return parent
     }
 
@@ -32,11 +32,11 @@ open class Segment: BaseItem<AnyObject> {
     /// - Parameter name: Name of the segment information item
     /// - Parameter value: value of the segment information item
     /// - Returns: current Segment Object
-    open func segment(_ name: String, value: AnyObject) -> Segment {
+    public func segment(name: String, value: AnyObject) -> Segment {
         return custom(name, value: value) as! Segment
     }
 
-    open override func returnSelf() -> AnyObject {
+    public override func returnSelf() -> AnyObject {
         return self
     }
 }

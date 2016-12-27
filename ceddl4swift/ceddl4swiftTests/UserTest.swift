@@ -43,7 +43,7 @@ class UserTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataUser.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "userTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "userTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
@@ -91,7 +91,7 @@ class UserTest: XCTestCase {
 
         do {
             let digitalDataDictionary = digitalDataUser.getMap()
-            if let json = try Utility.loadJSONFromFile(type(of: self), name: "userTest") as? Dictionary<String, AnyObject> {
+            if let json = try Utility.loadJSONFromFile(self.dynamicType, name: "userTest") as? Dictionary<String, AnyObject> {
                 assert(digitalDataDictionary == json, "Digital Data is not equal to contents of file")
             } else {
                 assert(false, "Unable to generate dictionary from file")
