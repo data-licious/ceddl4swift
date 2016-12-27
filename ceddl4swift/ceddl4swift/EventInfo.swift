@@ -30,7 +30,7 @@ public class EventInfo: BaseItem<AnyObject> {
 
     /// Returns to the parent Event object.
     /// - Returns: parent Event object
-    func endEventInfo() -> Event {
+    public func endEventInfo() -> Event {
         return parent
     }
 
