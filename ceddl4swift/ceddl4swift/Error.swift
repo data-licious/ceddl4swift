@@ -9,7 +9,7 @@
 import Foundation
 
 ///If an error occurs in the framework
-enum DigitalDataError: ErrorType {
+enum DigitalDataError: Error {
     /// Illegal_State
     case illegalStateException(String)
     /// JSON Parsing Error

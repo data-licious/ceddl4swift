@@ -115,7 +115,7 @@ public class DigitalData: NSObject, JSONProtocol {
 
     /// Creates a new DigitalData object and set the pageInstanceID.
     /// - Returns: new DigitalData object
-    public class func create(pageInstanceID: String) -> DigitalData {
+    public class func create(_ pageInstanceID: String) -> DigitalData {
         return DigitalData().pageInstanceId(pageInstanceID)
     }
 
@@ -126,7 +126,7 @@ public class DigitalData: NSObject, JSONProtocol {
     /// This value SHOULD distinguish among environments, 
     /// such as whether this page is in development, staging, or production.
     /// - Returns: The current DigitalData object
-    public func pageInstanceId(pId: String) -> DigitalData {
+    public func pageInstanceId(_ pId: String) -> DigitalData {
         pageInstanceID = pId
         return self
     }
@@ -153,7 +153,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter page: The Page Object to set.
     /// - Returns: The current DigitalData object
-    public func setPage(page: Page) -> DigitalData {
+    public func setPage(_ page: Page) -> DigitalData {
         ddPage = page
         return self
     }
@@ -188,7 +188,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter newProduct: The Product Object to add to the list of products.
     /// - Returns: current Digital Data Object
-    public func addProduct(newProduct: Product) -> DigitalData {
+    public func addProduct(_ newProduct: Product) -> DigitalData {
         if product == nil {
             product = Array<Product>()
         }
@@ -222,7 +222,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter cart: The Cart Object to set.
     /// - Returns: current Digital Data Object
-    public func setCart(cart: Cart) -> DigitalData {
+    public func setCart(_ cart: Cart) -> DigitalData {
         ddCart = cart;
         return self
     }
@@ -253,7 +253,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter transaction: The Transaction Object to set.
     /// - Returns: current Digital Data Object
-    public func setTransaction(transaction: Transaction) -> DigitalData {
+    public func setTransaction(_ transaction: Transaction) -> DigitalData {
         ddTransaction = transaction;
         return self
     }
@@ -286,7 +286,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter newEvent: The Event Object to add to the list of events.
     /// - Returns: current Digital Data Object
-    public func addEvent(newEvent: Event) -> DigitalData {
+    public func addEvent(_ newEvent: Event) -> DigitalData {
         if event == nil {
             event = Array<Event>()
         }
@@ -322,7 +322,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter newComponent: The Component Object to add to the list of page components.
     /// - Returns: current Digital Data Object
-    public func addComponent(newComponent: Component) -> DigitalData {
+    public func addComponent(_ newComponent: Component) -> DigitalData {
         if component == nil {
             component = Array<Component>()
         }
@@ -361,7 +361,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter newUser: The User Object to add to the list of users.
     /// - Returns: current Digital Data Object
-    public func addUser(newUser: User) -> DigitalData {
+    public func addUser(_ newUser: User) -> DigitalData {
         if user == nil {
             user = Array<User>()
         }
@@ -384,7 +384,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter privacy: The Privacy Object to set.
     /// - Returns: current Digital Data Object
-    public func setPrivacy(privacy: Privacy) -> DigitalData {
+    public func setPrivacy(_ privacy: Privacy) -> DigitalData {
         ddPrivacy = privacy
         return self
     }
@@ -395,7 +395,7 @@ public class DigitalData: NSObject, JSONProtocol {
     ///
     /// - Parameter version: Custom version value
     /// - Returns: The current DigitalData object
-    public func version(version: String) -> DigitalData {
+    public func version(_ version: String) -> DigitalData {
         ddVersion = version
         return self
     }
@@ -469,8 +469,8 @@ public class DigitalData: NSObject, JSONProtocol {
     public func toString() throws -> String {
         var digitalData = ""
         let map = getMap()
-        let json = try NSJSONSerialization.dataWithJSONObject(map, options: .PrettyPrinted)
-        if let jsonString = String(data: json, encoding: NSUTF8StringEncoding) {
+        let json = try JSONSerialization.data(withJSONObject: map, options: .prettyPrinted)
+        if let jsonString = String(data: json, encoding: .utf8) {
             digitalData = jsonString
         } else {
             throw DigitalDataError.parsingFailed("Unable to parse the created object")

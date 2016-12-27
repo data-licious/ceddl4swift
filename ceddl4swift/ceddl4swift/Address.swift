@@ -37,7 +37,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the address line 1.
     /// - Parameter line1: String
     /// - Returns: current object
-    public func line1(line1: String) -> Self {
+    public func line1(_ line1: String) -> Self {
         addItem(LINE1, value: line1 as AnyObject)
         return self
     }
@@ -46,7 +46,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the address line 2.
     /// - Parameter line2: String
     /// - Returns: current object
-    public func line2(line2: String) -> Self {
+    public func line2(_ line2: String) -> Self {
         addItem(LINE2, value: line2 as AnyObject)
         return self
     }
@@ -55,7 +55,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the city.
     /// - Parameter city: String
     /// - Returns: current object
-    public func city(city: String) -> Self {
+    public func city(_ city: String) -> Self {
         addItem(CITY, value: city as AnyObject)
         return self
     }
@@ -64,7 +64,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the stateProvince.
     /// - Parameter stateProvince: String
     /// - Returns: current object
-    public func stateProvince(stateProvince: String) -> Self {
+    public func stateProvince(_ stateProvince: String) -> Self {
         addItem(STATE_PROVINCE, value: stateProvince as AnyObject)
         return self
     }
@@ -73,7 +73,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the postalCode.
     /// - Parameter postalCode: String
     /// - Returns: current object
-    public func postalCode(postalCode: String) -> Self {
+    public func postalCode(_ postalCode: String) -> Self {
         addItem(POSTAL_CODE, value: postalCode as AnyObject)
         return self
     }
@@ -82,7 +82,7 @@ public class Address<T>: BaseItem<AnyObject> {
     /// Sets the country.
     /// - Parameter country: String
     /// - Returns: current object
-    public func country(country: String) -> Self {
+    public func country(_ country: String) -> Self {
         addItem(COUNTRY, value: country as AnyObject)
         return self
     }

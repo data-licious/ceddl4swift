@@ -92,11 +92,11 @@ public class Page: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current object
-    public func addAttribute(name: String, value: AnyObject) -> Page {
+    public func addAttribute(_ name: String, value: AnyObject) -> Page {
         if pageAttributes == nil {
             pageAttributes = DAttributes<Page>(parent :self)
         }
-        if let dateValue = value as? NSDate {
+        if let dateValue = value as? Date {
             let dateStringValue = dateToString(dateValue)
             _ = pageAttributes.attribute(name, value: dateStringValue as AnyObject)
         } else {
@@ -109,7 +109,7 @@ public class Page: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Page's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current object.
-    public func addPrimaryCategory(primaryCategory: String) -> Page {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Page {
         if pageCategory == nil {
             pageCategory =  Category<Page>(parent: self)
         }
@@ -122,7 +122,7 @@ public class Page: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current object.
-    public func addCategory(name: String, value: AnyObject) -> Page {
+    public func addCategory(_ name: String, value: AnyObject) -> Page {
         if pageCategory == nil {
             pageCategory = Category<Page>(parent: self)
         }

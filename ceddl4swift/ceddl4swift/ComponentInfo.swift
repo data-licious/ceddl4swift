@@ -31,7 +31,7 @@ public class ComponentInfo: BaseItem<AnyObject> {
     /// Sets the componentID.
     /// - Parameter componentID: String
     /// - Returns: current ComponentInfo
-    public func componentID(componentID: String) -> ComponentInfo {
+    public func componentID(_ componentID: String) -> ComponentInfo {
         addItem(COMPONENT_ID_NAME, value: componentID as AnyObject)
         return self
     }

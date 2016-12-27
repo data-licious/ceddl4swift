@@ -31,7 +31,7 @@ public class DAttributes<T>: BaseItem<AnyObject> {
     /// - Parameter name: Custom attribute name
     /// - Parameter value: Custom attribute value
     /// - Returns: current object
-    public func attribute(name: String, value: AnyObject) -> DAttributes {
+    public func attribute(_ name: String, value: AnyObject) -> DAttributes {
         super.addItem(name, value: value)
         return self
     }

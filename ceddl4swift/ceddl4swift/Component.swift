@@ -95,7 +95,7 @@ public class Component: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Component.
-    public func addAttribuut(name: String, value: AnyObject) -> Component {
+    public func addAttribuut(_ name: String, value: AnyObject) -> Component {
         if componentAttributes == nil {
             componentAttributes = DAttributes<Component>(parent: self)
         }
@@ -107,7 +107,7 @@ public class Component: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Component's categories.
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current Component.
-    public func addPrimaryCategory(primaryCategory: String) -> Component {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Component {
         if componentCategory == nil {
             componentCategory = Category<Component>(parent: self)
         }
@@ -120,7 +120,7 @@ public class Component: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current Component.
-    public func addCategory(name: String, value: AnyObject) -> Component {
+    public func addCategory(_ name: String, value: AnyObject) -> Component {
         if componentCategory == nil {
             componentCategory = Category<Component>(parent: self)
         }

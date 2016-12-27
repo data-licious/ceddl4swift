@@ -38,7 +38,7 @@ public class AccessCategory: BaseItem<AnyObject> {
     ///
     /// - Parameter categoryName: string
     /// - Returns: current Object
-    public func categoryName(categoryName: String) -> Self {
+    public func categoryName(_ categoryName: String) -> Self {
         addItem(CATEGORY_NAME, value: categoryName as AnyObject)
         return self
     }
@@ -54,7 +54,7 @@ public class AccessCategory: BaseItem<AnyObject> {
     ///
     /// - Parameter domains: String
     /// - Returns: current Object
-    public func domains(domains: Array<String>) -> Self {
+    public func domains(_ domains: Array<String>) -> Self {
         addItem(DOMAINS, value: domains as AnyObject)
         return self
     }

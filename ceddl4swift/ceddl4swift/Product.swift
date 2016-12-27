@@ -108,7 +108,7 @@ public class Product: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Product object
-    public func addAttribute(name: String, value: AnyObject) -> Self {
+    public func addAttribute(_ name: String, value: AnyObject) -> Self {
         if productAttributes == nil {
             productAttributes = DAttributes<Product>(parent: self)
         }
@@ -120,7 +120,7 @@ public class Product: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Product's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: The current Product object
-    public func addPrimaryCategory(primaryCategory: String) -> Self {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
         }
@@ -133,7 +133,7 @@ public class Product: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Product object
-    public func addCategory(name: String, value: AnyObject) -> Self {
+    public func addCategory(_ name: String, value: AnyObject) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
         }

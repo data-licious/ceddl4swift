@@ -28,7 +28,7 @@ public class Security: NSObject {
     ///
     /// - Parameter field: Fieldname
     /// - Parameter accessCategories: accessCategories for field.
-    public func addSecurity(field: String, accessCategories: Array<String>) {
+    public func addSecurity(_ field: String, accessCategories: Array<String>) {
         if accessCategories.count == 1 {
             items[field] = accessCategories[0] as AnyObject
         } else if accessCategories.count > 1 {

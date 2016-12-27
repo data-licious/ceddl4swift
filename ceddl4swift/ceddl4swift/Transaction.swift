@@ -50,7 +50,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// - Parameter transactionID:
     ///           A unique identifier for a particular transaction; usually an existing order identifier.
     /// - Returns: current Transaction
-    public func transactionID(transactionID: String) -> Transaction {
+    public func transactionID(_ transactionID: String) -> Transaction {
         return custom(TRANSACTION_ID, value: transactionID as AnyObject) as! Transaction
     }
 
@@ -105,7 +105,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Transaction object.
-    public func addAttribute(name: String, value: AnyObject) -> Self {
+    public func addAttribute(_ name: String, value: AnyObject) -> Self {
         if transactionAttributes == nil {
             transactionAttributes = DAttributes<Transaction>(parent: self)
         }

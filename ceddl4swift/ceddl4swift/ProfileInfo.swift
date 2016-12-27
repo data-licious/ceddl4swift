@@ -37,7 +37,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the profileID.
     /// - Parameter profileID: String
     /// - Returns: current Object
-    public func profileID(profileID: String) -> Self {
+    public func profileID(_ profileID: String) -> Self {
         addItem(PROFILE_ID, value: profileID as AnyObject)
         return self
     }
@@ -46,7 +46,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the userName.
     /// - Parameter userName: String
     /// - Returns: current Object
-    public func userName(userName: String) -> Self {
+    public func userName(_ userName: String) -> Self {
         addItem(USER_NAME, value: userName as AnyObject)
         return self
     }
@@ -55,7 +55,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the email.
     /// - Parameter email: String
     /// - Returns: current Object
-    public func email(email: String) -> Self {
+    public func email(_ email: String) -> Self {
         addItem(EMAIL, value: email as AnyObject)
         return self
     }
@@ -64,7 +64,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the language.
     /// - Parameter language: String
     /// - Returns: current Object
-    public func language(language: String) -> Self {
+    public func language(_ language: String) -> Self {
         addItem(LANGUAGE, value: language as AnyObject)
         return self
     }
@@ -73,7 +73,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the returningStatus.
     /// - Parameter returningStatus: String
     /// - Returns: current Object
-    public func returningStatus(returningStatus: String) ->  Self {
+    public func returningStatus(_ returningStatus: String) ->  Self {
         addItem(RETURNING_STATUS, value: returningStatus as AnyObject)
         return self
     }
@@ -82,7 +82,7 @@ public class ProfileInfo<T>: BaseItem<AnyObject> {
     /// Sets the type.
     /// - Parameter type: String
     /// - Returns: current Object
-    public func type(type: String) -> Self {
+    public func type(_ type: String) -> Self {
         addItem(TYPE, value: type as AnyObject)
         return self
     }

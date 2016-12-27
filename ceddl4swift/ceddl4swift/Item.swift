@@ -71,7 +71,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Sets the quantity of this particular item in the cart or transaction.
     /// - Returns: current object
-    public func quantity(quantity: NSNumber) -> Item<T> {
+    public func quantity(_ quantity: NSNumber) -> Item<T> {
         addItem(QUANTITY, value: quantity)
         return self
     }
@@ -114,7 +114,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Item.
-    public func addAttribuut(name: String, value: AnyObject) -> Self {
+    public func addAttribuut(_ name: String, value: AnyObject) -> Self {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
         }
@@ -126,7 +126,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// Directly adds a new attribute to the Item's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current oject.
-    public func addPrimaryCategory(primaryCategory: String) -> Self {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
@@ -139,7 +139,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current object.
-    public func addCategory(name: String, value: AnyObject) -> Item<T> {
+    public func addCategory(_ name: String, value: AnyObject) -> Item<T> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }

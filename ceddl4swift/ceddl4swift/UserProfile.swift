@@ -82,7 +82,7 @@ public class UserProfile: NSObject, JSONProtocol {
     /// - Parameter name: Name of the social information
     /// - Parameter value: Value for the social information
     /// - Returns: current UserProfile.
-    public func addSocial(name: String, value: String) -> UserProfile {
+    public func addSocial(_ name: String, value: String) -> UserProfile {
         if userSocial == nil {
             userSocial = Social(parent: self)
         }
@@ -108,7 +108,7 @@ public class UserProfile: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current UserProfile.
-    public func addAttribute(name: String, value: String) -> UserProfile {
+    public func addAttribute(_ name: String, value: String) -> UserProfile {
         if userAttributes == nil {
             userAttributes = DAttributes<UserProfile>(parent: self)
         }

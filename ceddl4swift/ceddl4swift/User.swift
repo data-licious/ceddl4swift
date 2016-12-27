@@ -60,7 +60,7 @@ public class User: NSObject, JSONProtocol {
     /// - Parameter name: Name of the segment
     /// - Parameter value: Value for the segment
     /// - Returns: current User object.
-    public func addSegment(name: String, value: String) -> Self {
+    public func addSegment(_ name: String, value: String) -> Self {
         if userSegment == nil {
             userSegment = Segment(parent: self)
         }

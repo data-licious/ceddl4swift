@@ -31,7 +31,7 @@ public class Social: BaseItem<AnyObject> {
     /// - Parameter name: Name of the social information item
     /// - Parameter value: value of the social information item
     /// - Returns: current Social Object
-    public func social(name: String, value: AnyObject) -> Social {
+    public func social(_ name: String, value: AnyObject) -> Social {
         return custom(name, value: value) as! Social
     }
 

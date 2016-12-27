@@ -32,7 +32,7 @@ public class Segment: BaseItem<AnyObject> {
     /// - Parameter name: Name of the segment information item
     /// - Parameter value: value of the segment information item
     /// - Returns: current Segment Object
-    public func segment(name: String, value: AnyObject) -> Segment {
+    public func segment(_ name: String, value: AnyObject) -> Segment {
         return custom(name, value: value) as! Segment
     }
 

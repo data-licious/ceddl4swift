@@ -14,7 +14,7 @@ public class HealthCareDigitalData: DigitalData {
     private var application: CustomObject!
     private var plan: CustomObject!
 
-    public func addMember(newMember: CustomObject) -> Self {
+    public func addMember(_ newMember: CustomObject) -> Self {
         if member == nil {
             member = Array<CustomObject>()
         }
@@ -22,12 +22,12 @@ public class HealthCareDigitalData: DigitalData {
         return self
     }
 
-    public func setApplication(app: CustomObject) -> Self {
+    public func setApplication(_ app: CustomObject) -> Self {
         application = app
         return self
     }
 
-    public func setPlan(plan: CustomObject) -> Self {
+    public func setPlan(_ plan: CustomObject) -> Self {
         self.plan = plan
         return self
     }

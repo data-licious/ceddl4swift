@@ -9,9 +9,9 @@
 import Foundation
 
 /// Standard `Date` to `String` conversion
-public let dateToStringFormatter: NSDateFormatter = {
-    let dateFormatter = NSDateFormatter()
-    let timeZone = NSTimeZone(name: "GMT")
+public let dateToStringFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    let timeZone = TimeZone(identifier: "GMT")
     dateFormatter.timeZone = timeZone
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     return dateFormatter
@@ -23,8 +23,8 @@ public func ==(lhs: [String: AnyObject], rhs: [String: AnyObject] ) -> Bool {
 }
 
 /// Converting date to `String`
-public func dateToString(date: NSDate) -> String {
-    return dateToStringFormatter.stringFromDate(date)
+public func dateToString(_ date: Date) -> String {
+    return dateToStringFormatter.string(from: date)
 }
 
 /// Adding the equality of `Dictionary`
@@ -40,11 +40,11 @@ public func + <K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary
 }
 
 public class Utility {
-    class func loadJSONFromFile(type: Swift.AnyClass, name: String) throws -> Any {
-        let filePath = NSBundle(forClass: type).pathForResource(name, ofType: "json")
+    class func loadJSONFromFile(_ type: Swift.AnyClass, name: String) throws -> Any {
+        let filePath = Bundle(for: type).path(forResource: name, ofType: "json")
         let fileURL = NSURL(fileURLWithPath: filePath!)
-        let data = NSData(contentsOfURL: fileURL)
-        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+        let data = try Data(contentsOf: fileURL as URL)
+        let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
         return json
     }
 }

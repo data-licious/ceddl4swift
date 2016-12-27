@@ -79,7 +79,7 @@ public class Event: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Event.
-    public func addAttribute(name: String, value: AnyObject) -> Self {
+    public func addAttribute(_ name: String, value: AnyObject) -> Self {
         if eventAttributes == nil {
             eventAttributes = DAttributes<Event>(parent: self)
         }
@@ -91,7 +91,7 @@ public class Event: NSObject, JSONProtocol {
     /// Directly sets the primary category for the Event
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current Event.
-    public func addPrimaryCategory(primaryCategory: String) -> Self {
+    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }
@@ -103,7 +103,7 @@ public class Event: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: current Event.
-    public func addCategory(name: String, value: AnyObject) -> Self {
+    public func addCategory(_ name: String, value: AnyObject) -> Self {
         if eventCategory == nil {
             eventCategory = Category<Event>(parent: self)
         }

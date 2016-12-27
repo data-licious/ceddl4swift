@@ -56,7 +56,7 @@ public class Cart: BaseItem<AnyObject> {
     ///  Set the cartID
     /// - Parameter cartID: An identifier for a particular shopping cart.
     /// - Returns: The current Cart Object.
-    public func cartID(cartID: String) -> Cart {
+    public func cartID(_ cartID: String) -> Cart {
         return custom(CART_ID, value: cartID as AnyObject) as! Cart
     }
 
@@ -97,7 +97,7 @@ public class Cart: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Cart object
-    public func addAttribute(name: String, value: AnyObject) -> Cart {
+    public func addAttribute(_ name: String, value: AnyObject) -> Cart {
         if cartAttributes == nil {
             cartAttributes = DAttributes<Cart>(parent: self)
         }

@@ -36,7 +36,7 @@ public class Category<T>: BaseItem<AnyObject> {
     ///
     /// - Parameter primaryCategory value: primaryCategory value value
     /// - Returns: current object
-    public func primaryCategory(primaryCategory: String) -> Category {
+    public func primaryCategory(_ primaryCategory: String) -> Category {
         return super.custom(PRIMARY_CATEGORY_NAME, value: primaryCategory as AnyObject) as! Category<T>
     }
 
@@ -45,7 +45,7 @@ public class Category<T>: BaseItem<AnyObject> {
     /// - Parameter name: Custom attribute name
     /// - Parameter value: Custom attribute value
     /// - Returns: current object
-    public func category(name: String, value: AnyObject) -> Category {
+    public func category(_ name: String, value: AnyObject) -> Category {
         return super.custom(name, value: value) as! Category<T>
     }
 

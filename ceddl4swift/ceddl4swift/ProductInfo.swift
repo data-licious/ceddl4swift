@@ -41,7 +41,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productID.
     /// - Parameter productID: String
     /// - Returns: current Object
-    public func productID(productID: String) -> Self {
+    public func productID(_ productID: String) -> Self {
         addItem(PRODUCT_ID, value: productID as AnyObject)
         return self
     }
@@ -50,7 +50,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productName.
     /// - Parameter productName: String
     /// - Returns: current Object
-    public func productName(productName: String) -> Self {
+    public func productName(_ productName: String) -> Self {
         addItem(PRODUCT_NAME, value: productName as AnyObject)
         return self
     }
@@ -59,7 +59,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the description.
     /// - Parameter description: String
     /// - Returns: current Object
-    public func description(description: String) -> Self {
+    public func description(_ description: String) -> Self {
         addItem(DESCRIPTION, value: description as AnyObject)
         return self
     }
@@ -68,7 +68,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productURL.
     /// - Parameter productURL: String
     /// - Returns: current Object
-    public func productURL(productURL: String) -> Self {
+    public func productURL(_ productURL: String) -> Self {
         addItem(PRODUCT_URL, value: productURL as AnyObject)
         return self
     }
@@ -77,7 +77,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productImage.
     /// - Parameter productImage: String
     /// - Returns: current Object
-    public func productImage(productImage: String) -> Self {
+    public func productImage(_ productImage: String) -> Self {
         addItem(PRODUCT_IMAGE, value: productImage as AnyObject)
         return self
     }
@@ -86,7 +86,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productThumbnail.
     /// - Parameter productThumbnail: String
     /// - Returns: current Object
-    public func productThumbnail(productThumbnail: String) -> Self {
+    public func productThumbnail(_ productThumbnail: String) -> Self {
         addItem(PRODUCT_THUMBNAIL, value: productThumbnail as AnyObject)
         return self
     }
@@ -95,7 +95,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the manufacturer.
     /// - Parameter manufacturer: String
     /// - Returns: current Object
-    public func manufacturer(manufacturer: String) -> Self {
+    public func manufacturer(_ manufacturer: String) -> Self {
         addItem(MANUFACTURER, value: manufacturer as AnyObject)
         return self
     }
@@ -104,7 +104,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the sku.
     /// - Parameter sku: String
     /// - Returns: current Object
-    public func sku(sku: String) -> Self {
+    public func sku(_ sku: String) -> Self {
         addItem(SKU, value: sku as AnyObject)
         return self
     }
@@ -113,7 +113,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the color.
     /// - Parameter color: String
     /// - Returns: current Object
-    public func color(color: String) -> Self {
+    public func color(_ color: String) -> Self {
         addItem(COLOR, value: color as AnyObject)
         return self
     }
@@ -122,7 +122,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the size.
     /// - Parameter size: String
     /// - Returns: current Object
-    public func size(size: String) -> Self {
+    public func size(_ size: String) -> Self {
         addItem(SIZE, value: size as AnyObject)
         return self
     }
