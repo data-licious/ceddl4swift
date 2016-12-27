@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/data-licious/ceddl4swift.git", :tag => "2.3.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
