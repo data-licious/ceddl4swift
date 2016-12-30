@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class Privacy: NSObject, JSONProtocol {
+open class Privacy: NSObject, JSONProtocol {
 
-    private var parent: DigitalData!
+    fileprivate var parent: DigitalData!
 
     //JSON id - accessCategories
-    private var accessCategories: Array<AccessCategory>!
+    fileprivate var accessCategories: Array<AccessCategory>!
 
 
     /// init `Privacy` object.
@@ -31,7 +31,7 @@ public class Privacy: NSObject, JSONProtocol {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    public func endPrivacy() -> DigitalData {
+    open func endPrivacy() -> DigitalData {
         return parent
     }
 
@@ -39,7 +39,7 @@ public class Privacy: NSObject, JSONProtocol {
     /// Adds a new AccessCategory.
     ///
     /// - Returns: a new AccessCategory object
-    public func addAccessCategory() -> AccessCategory {
+    open func addAccessCategory() -> AccessCategory {
         if accessCategories == nil {
             accessCategories = Array<AccessCategory>()
         }
@@ -52,7 +52,7 @@ public class Privacy: NSObject, JSONProtocol {
     /// Adds the Default AccessCategory.
     ///
     /// - Returns: a new AccessCategory object
-    public func addDefaultAccessCategory() -> AccessCategory {
+    open func addDefaultAccessCategory() -> AccessCategory {
         if accessCategories == nil {
             accessCategories = Array<AccessCategory>()
         }
@@ -62,7 +62,7 @@ public class Privacy: NSObject, JSONProtocol {
         return accessCategory
     }
 
-    public func getMap() -> Dictionary<String, AnyObject> {
+    open func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if accessCategories != nil {
             var accessDictionary = Array<Dictionary<String, AnyObject>>()

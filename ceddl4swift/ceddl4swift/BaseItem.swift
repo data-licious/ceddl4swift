@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BaseItem<T>: NSObject {
+open class BaseItem<T>: NSObject {
 
     private var items: Dictionary<String, AnyObject> = [:]
 
@@ -52,7 +52,7 @@ public class BaseItem<T>: NSObject {
     ///	      .pageInfo()
     ///       .pageName("Nikon SLR Camera")
     ///       .security("Analytics", "Personalization")
-    public func security(_ accessCategories: Array<String>) throws -> T {
+    open func security(_ accessCategories: Array<String>) throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addSecurity directly after setting a field to secure it.")
         }
@@ -77,7 +77,7 @@ public class BaseItem<T>: NSObject {
     ///	      .pageInfo()
     ///       .pageName("Nikon SLR Camera")
     ///       .defaultSecurity()
-    public func defaultSecurity() throws -> T {
+    open func defaultSecurity() throws -> T {
         if previousField == nil {
             throw DigitalDataError.illegalStateException("No field found to secure - Call addDefaultSecurity directly after setting a field to secure it.")
         }
@@ -93,7 +93,7 @@ public class BaseItem<T>: NSObject {
     /// - Parameter name: custom property name
     /// - Parameter value: custom property value
     /// - Returns: current object
-    public func custom(_ name: String, value: AnyObject) -> T {
+    open func custom(_ name: String, value: AnyObject) -> T {
         addItem(name, value: value)
         return returnSelf()
     }

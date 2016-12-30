@@ -8,22 +8,22 @@
 
 import Foundation
 
-public class Transaction: BaseItem<AnyObject> {
+open class Transaction: BaseItem<AnyObject> {
 
-    private let TRANSACTION_ID = "transactionID"
-    private var parent: DigitalData!
+    fileprivate let TRANSACTION_ID = "transactionID"
+    fileprivate var parent: DigitalData!
 
     //JSON id - profile
-    private var transactionProfile: TransactionProfile!
+    fileprivate var transactionProfile: TransactionProfile!
 
     //JSON id - total
-    private var transactionTotal: Price<Transaction>!
+    fileprivate var transactionTotal: Price<Transaction>!
 
     //JSON id - attributes
-    private var transactionAttributes: DAttributes<Transaction>!
+    fileprivate var transactionAttributes: DAttributes<Transaction>!
 
     //JSON id - item
-    private var transactionItem: Array<Item<Transaction>>!
+    fileprivate var transactionItem: Array<Item<Transaction>>!
 
 
     /// init `Transaction` object.
@@ -41,7 +41,7 @@ public class Transaction: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    public func endTransaction() -> DigitalData {
+    open func endTransaction() -> DigitalData {
         return parent
     }
 
@@ -50,7 +50,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// - Parameter transactionID:
     ///           A unique identifier for a particular transaction; usually an existing order identifier.
     /// - Returns: current Transaction
-    public func transactionID(_ transactionID: String) -> Transaction {
+    open func transactionID(_ transactionID: String) -> Transaction {
         return custom(TRANSACTION_ID, value: transactionID as AnyObject) as! Transaction
     }
 
@@ -61,7 +61,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// a registered user.
     ///
     /// - Returns: Profile Object for this Transaction
-    public func profile() -> TransactionProfile {
+    open func profile() -> TransactionProfile {
         if transactionProfile == nil {
             transactionProfile = TransactionProfile(parent: self)
         }
@@ -77,7 +77,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// total price inclusive of all discounts, charges, and tax.
     ///
     /// - Returns: The Total (Price) object for this Transaction.
-    public func total() -> Price<Transaction> {
+    open func total() -> Price<Transaction> {
         if transactionTotal == nil {
             transactionTotal = Price<Transaction>(parent: self)
         }
@@ -93,7 +93,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// naming and values passed.
     ///
     /// - Returns: Attributes object for this Transaction
-    public func attributes() -> DAttributes<Transaction> {
+    open func attributes() -> DAttributes<Transaction> {
         if transactionAttributes == nil {
             transactionAttributes = DAttributes<Transaction>(parent: self)
         }
@@ -105,7 +105,7 @@ public class Transaction: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Transaction object.
-    public func addAttribute(_ name: String, value: AnyObject) -> Self {
+    open func addAttribute(_ name: String, value: AnyObject) -> Self {
         if transactionAttributes == nil {
             transactionAttributes = DAttributes<Transaction>(parent: self)
         }
@@ -116,7 +116,7 @@ public class Transaction: BaseItem<AnyObject> {
 
     /// Adds a new Item to the list of items in the transaction.
     /// - Returns: a new Item in the transaction
-    public func addItem() -> Item<Transaction> {
+    open func addItem() -> Item<Transaction> {
         if transactionItem == nil {
             transactionItem = Array<Item<Transaction>>()
         }
@@ -125,11 +125,11 @@ public class Transaction: BaseItem<AnyObject> {
         return item
     }
     
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 
-    public override func getMap() -> Dictionary<String, AnyObject> {
+    open override func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         dictionary = super.getMap()
         if transactionProfile != nil {

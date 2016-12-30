@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class EventInfo: BaseItem<AnyObject> {
+open class EventInfo: BaseItem<AnyObject> {
 
     private let EVENT_NAME = "eventName"
     private let EVENT_ACTION = "eventAction"
@@ -18,7 +18,7 @@ public class EventInfo: BaseItem<AnyObject> {
     private let CAUSE = "cause"
     private let EFFECT = "effect"
 
-    private var parent: Event
+    fileprivate var parent: Event
 
 
     /// init an EventInfo object.
@@ -30,7 +30,7 @@ public class EventInfo: BaseItem<AnyObject> {
 
     /// Returns to the parent Event object.
     /// - Returns: parent Event object
-    public func endEventInfo() -> Event {
+    open func endEventInfo() -> Event {
         return parent
     }
 
@@ -41,7 +41,7 @@ public class EventInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter eventName: String
     /// - Returns: current EventInfo
-    public func eventName(_ eventName: String) -> Self {
+    open func eventName(_ eventName: String) -> Self {
         addItem(EVENT_NAME, value: eventName as AnyObject)
         return self
     }
@@ -50,7 +50,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the eventAction.
     /// - Parameter eventAction: String
     /// - Returns: current EventInfo
-    public func eventAction(_ eventAction: String) -> Self {
+    open func eventAction(_ eventAction: String) -> Self {
         addItem(EVENT_ACTION, value: eventAction as AnyObject)
         return self
     }
@@ -59,7 +59,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the eventPoints.
     /// - Parameter eventPoints: NSNumber
     /// - Returns: current EventInfo
-    public func eventPoints(_ eventPoints: NSNumber) -> Self {
+    open func eventPoints(_ eventPoints: NSNumber) -> Self {
         addItem(EVENT_POINTS, value: eventPoints)
         return self
     }
@@ -68,7 +68,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the Type.
     /// - Parameter type: String
     /// - Returns: current EventInfo
-    public func type(_ type: String) -> Self {
+    open func type(_ type: String) -> Self {
         addItem(TYPE, value: type as AnyObject)
         return self
     }
@@ -77,7 +77,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the TimeStamp.
     /// - Parameter timeStamp: String
     /// - Returns: current EventInfo
-    public func timeStamp(_ timeStamp: String) -> Self {
+    open func timeStamp(_ timeStamp: String) -> Self {
         addItem(TIME_STAMP, value: timeStamp as AnyObject)
         return self
     }
@@ -86,7 +86,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the TimeStamp.
     /// - Parameter timeStamp: Date
     /// - Returns: current EventInfo
-    public func timeStamp(_ timeStamp: Date) -> Self {
+    open func timeStamp(_ timeStamp: Date) -> Self {
         let stringFromDate = dateToString(timeStamp)
         addItem(TIME_STAMP, value: stringFromDate as AnyObject)
         return self
@@ -95,7 +95,7 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the Cause.
     /// - Parameter cause: Date
     /// - Returns: current EventInfo
-    public func cause(_ cause: String) -> Self {
+    open func cause(_ cause: String) -> Self {
         addItem(CAUSE, value: cause as AnyObject)
         return self
     }
@@ -104,12 +104,12 @@ public class EventInfo: BaseItem<AnyObject> {
     /// Sets the Effect.
     /// - Parameter effect: Date
     /// - Returns: current EventInfo
-    public func effect(_ effect: String) -> Self {
+    open func effect(_ effect: String) -> Self {
         addItem(EFFECT, value: effect as AnyObject)
         return self
     }
     
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PageInfo: BaseItem<AnyObject> {
+open class PageInfo: BaseItem<AnyObject> {
 
     private static let AUTHOR = "author"
     private static let BREADCRUMBS = "breadcrumbs"
@@ -41,7 +41,7 @@ public class PageInfo: BaseItem<AnyObject> {
 
     /// Returns to the parent Page object.
     /// - Returns: parent Page object
-    public func endPageInfo() -> Page {
+    open func endPageInfo() -> Page {
         return parent
     }
 
@@ -53,7 +53,7 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter pageID: String
     /// - Returns: current PageInfo
-    public func pageID(_ pageID: String) -> Self {
+    open func pageID(_ pageID: String) -> Self {
         super.addItem(PageInfo.PAGE_ID, value: pageID as AnyObject)
         return self
     }
@@ -62,7 +62,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the pageName.
     /// - Parameter pageName: String
     /// - Returns: current PageInfo
-    public func pageName(_ pageName: String) -> Self {
+    open func pageName(_ pageName: String) -> Self {
         super.addItem(PageInfo.PAGE_NAME, value: pageName as AnyObject)
         return self
     }
@@ -74,7 +74,7 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter destinationURL: String
     /// - Returns: current PageInfo
-    public func destinationURL(_ destinationURL: String) -> Self {
+    open func destinationURL(_ destinationURL: String) -> Self {
         super.addItem(PageInfo.DESTINATION_URL, value: destinationURL as AnyObject)
         return self
     }
@@ -86,7 +86,7 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter referringURL: String
     /// - Returns: current PageInfo
-    public func referringURL(_ referringURL: String) -> Self {
+    open func referringURL(_ referringURL: String) -> Self {
         super.addItem(PageInfo.REFERRING_URL, value: referringURL as AnyObject)
         return self
     }
@@ -95,7 +95,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the sysEnv.
     /// - Parameter sysEnv: String
     /// - Returns: current PageInfo
-    public func sysEnv(_ sysEnv: String) -> Self {
+    open func sysEnv(_ sysEnv: String) -> Self {
         super.addItem(PageInfo.SYS_ENV, value: sysEnv as AnyObject)
         return self
     }
@@ -104,7 +104,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the variant.
     /// - Parameter variant: String
     /// - Returns: current PageInfo
-    public func variant(_ variant: String) -> Self {
+    open func variant(_ variant: String) -> Self {
         super.addItem(PageInfo.VARIANT, value: variant as AnyObject)
         return self
     }
@@ -113,7 +113,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the version.
     /// - Parameter version: String
     /// - Returns: current PageInfo
-    public func version(_ version: String) -> Self {
+    open func version(_ version: String) -> Self {
         super.addItem(PageInfo.VERSION, value: version as AnyObject)
         return self
     }
@@ -122,7 +122,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the breadCrumbs.
     /// - Parameter breadCrumbs: Array of string
     /// - Returns: current PageInfo
-    public func breadCrumbs(_ breadCrumbs: Array<String>) -> Self {
+    open func breadCrumbs(_ breadCrumbs: Array<String>) -> Self {
         super.addItem(PageInfo.BREADCRUMBS, value: breadCrumbs as AnyObject)
         return self
     }
@@ -131,7 +131,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the author.
     /// - Parameter author: String
     /// - Returns: current PageInfo
-    public func author(_ author: String) -> Self {
+    open func author(_ author: String) -> Self {
         super.addItem(PageInfo.AUTHOR, value: author as AnyObject)
         return self
     }
@@ -140,7 +140,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the issueDate.
     /// - Parameter issueDate: String
     /// - Returns: current PageInfo
-    public func issueDate(_ issueDate: String) -> Self {
+    open func issueDate(_ issueDate: String) -> Self {
         super.addItem(PageInfo.ISSUE_DATE, value: issueDate as AnyObject)
         return self
     }
@@ -149,7 +149,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the issueDate.
     /// - Parameter issueDate: Date
     /// - Returns: current PageInfo
-    public func issueDate(_ issueDate: Date) -> Self {
+    open func issueDate(_ issueDate: Date) -> Self {
         let issueDateString = dateToString(issueDate)
         super.addItem(PageInfo.ISSUE_DATE, value: issueDateString as AnyObject)
         return self
@@ -159,7 +159,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the effectiveDate.
     /// - Parameter author: effectiveDate
     /// - Returns: current PageInfo
-    public func effectiveDate(_ effectiveDate: String) -> Self {
+    open func effectiveDate(_ effectiveDate: String) -> Self {
         super.addItem(PageInfo.EFFECTIVE_DATE, value: effectiveDate as AnyObject)
         return self
     }
@@ -168,7 +168,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the effectiveDate.
     /// - Parameter effectiveDate: Date
     /// - Returns: current PageInfo
-    public func effectiveDate(_ effectiveDate: Date) -> Self {
+    open func effectiveDate(_ effectiveDate: Date) -> Self {
         let effectiveDateString = dateToString(effectiveDate)
         super.addItem(PageInfo.EFFECTIVE_DATE, value: effectiveDateString as AnyObject)
         return self
@@ -178,7 +178,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the expiryDate.
     /// - Parameter expiryDate: String
     /// - Returns: current PageInfo
-    public func expiryDate(_ expiryDate: String) -> Self {
+    open func expiryDate(_ expiryDate: String) -> Self {
         super.addItem(PageInfo.EXPIRY_DATE, value: expiryDate as AnyObject)
         return self
     }
@@ -187,7 +187,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the expiryDate.
     /// - Parameter expiryDate: Date
     /// - Returns: current PageInfo
-    public func expiryDate(_ expiryDate: Date) -> Self {
+    open func expiryDate(_ expiryDate: Date) -> Self {
         let expiryDateString = dateToString(expiryDate)
         super.addItem(PageInfo.EXPIRY_DATE, value: expiryDateString as AnyObject)
         return self
@@ -201,7 +201,7 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter language: String
     /// - Returns: current PageInfo
-    public func language(_ language: String) -> Self {
+    open func language(_ language: String) -> Self {
         super.addItem(PageInfo.LANGUAGE, value: language as AnyObject)
         return self
     }
@@ -210,7 +210,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the geoRegion.
     /// - Parameter geoRegion: String
     /// - Returns: current PageInfo
-    public func geoRegion(_ geoRegion: String) -> Self {
+    open func geoRegion(_ geoRegion: String) -> Self {
         super.addItem(PageInfo.GEO_REGION, value: geoRegion as AnyObject)
         return self
     }
@@ -219,7 +219,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the industryCodes.
     /// - Parameter industryCodes: String
     /// - Returns: current PageInfo
-    public func industryCodes(_ industryCodes: String) -> Self {
+    open func industryCodes(_ industryCodes: String) -> Self {
         super.addItem(PageInfo.INDUSTRY_CODES, value: industryCodes as AnyObject)
         return self
     } 
@@ -228,7 +228,7 @@ public class PageInfo: BaseItem<AnyObject> {
     /// Sets the publisher.
     /// - Parameter publisher: String
     /// - Returns: current PageInfo
-    public func publisher(_ publisher: String) -> Self {
+    open func publisher(_ publisher: String) -> Self {
         super.addItem(PageInfo.PUBLISHER, value: publisher as AnyObject)
         return self
     }
@@ -242,7 +242,7 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter onsiteSearchTerm: String
     /// - Returns: current PageInfo
-    public func onsiteSearchTerm(_ onsiteSearchTerm: String) -> Self {
+    open func onsiteSearchTerm(_ onsiteSearchTerm: String) -> Self {
         super.addItem(PageInfo.ONSITE_SEARCH_TERMS, value: onsiteSearchTerm as AnyObject)
         return self
     }
@@ -256,12 +256,12 @@ public class PageInfo: BaseItem<AnyObject> {
     ///
     /// - Parameter onsiteSearchResults: NSNumber
     /// - Returns: current PageInfo
-    public func onsiteSearchResults(_ onsiteSearchResults: NSNumber) -> Self {
+    open func onsiteSearchResults(_ onsiteSearchResults: NSNumber) -> Self {
         super.addItem(PageInfo.ONSITE_SEARCH_RESULTS, value: onsiteSearchResults)
         return self
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 }

@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class Item<T>: BaseItem<AnyObject> {
-    private let QUANTITY = "quantity"
-    private var parent: T
+open class Item<T>: BaseItem<AnyObject> {
+    fileprivate let QUANTITY = "quantity"
+    fileprivate var parent: T
 
     //JSON id - productInfo
-    private var productInformation: ProductInfo<Item<T>>!
+    fileprivate var productInformation: ProductInfo<Item<T>>!
 
     //JSON id - category
-    private var itemCategory: Category<Item<T>>!
+    fileprivate var itemCategory: Category<Item<T>>!
 
     //JSON id - price
-    private var itemPrice: Price<Item<T>>!
+    fileprivate var itemPrice: Price<Item<T>>!
 
     //JSON id - linkedProducts
-    private var linkedProducts: Array<LinkedProduct<Item<T>>>!
+    fileprivate var linkedProducts: Array<LinkedProduct<Item<T>>>!
 
     //JSON id - attributes
-    private var itemAttributes: DAttributes<Item<T>>!
+    fileprivate var itemAttributes: DAttributes<Item<T>>!
 
 
     /// init an Item object.
@@ -37,7 +37,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    public func endItem() -> T {
+    open func endItem() -> T {
         return parent
     }
 
@@ -47,7 +47,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// This object describes the product.
     ///
     /// - Returns: ProductInfo object for this Item
-    public func productInfo() -> ProductInfo<Item<T>> {
+    open func productInfo() -> ProductInfo<Item<T>> {
         if productInformation == nil {
             productInformation = ProductInfo<Item<T>>(parent: self)
         }
@@ -61,7 +61,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// literal is provided for product categories.
     ///
     /// - Returns: Category Object for this Item
-    public func category() -> Category<Item<T>> {
+    open func category() -> Category<Item<T>> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
@@ -71,7 +71,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Sets the quantity of this particular item in the cart or transaction.
     /// - Returns: current object
-    public func quantity(_ quantity: NSNumber) -> Item<T> {
+    open func quantity(_ quantity: NSNumber) -> Item<T> {
         addItem(QUANTITY, value: quantity)
         return self
     }
@@ -79,7 +79,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Provides access to the Item's price object.
     /// - Returns: Price object for the Item
-    public func price() -> Price<Item<T>> {
+    open func price() -> Price<Item<T>> {
         if itemPrice == nil {
             itemPrice = Price<Item<T>>(parent: self)
         }
@@ -89,7 +89,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Adds a new linked product to this Item.
     /// - Returns: new LinkedProduct object for the Item
-    public func addLinkedProduct() -> LinkedProduct<Item<T>> {
+    open func addLinkedProduct() -> LinkedProduct<Item<T>> {
         if linkedProducts == nil {
             linkedProducts = Array<LinkedProduct<Item<T>>>();
         }
@@ -102,7 +102,7 @@ public class Item<T>: BaseItem<AnyObject> {
 
     /// Provides access to the attributes object.
     /// - Returns: Attributes object for this Item
-    public func attributes() -> DAttributes<Item<T>> {
+    open func attributes() -> DAttributes<Item<T>> {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
         }
@@ -114,7 +114,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current Item.
-    public func addAttribuut(_ name: String, value: AnyObject) -> Self {
+    open func addAttribuut(_ name: String, value: AnyObject) -> Self {
         if itemAttributes == nil {
             itemAttributes = DAttributes<Item<T>>(parent: self)
         }
@@ -126,7 +126,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// Directly adds a new attribute to the Item's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: current oject.
-    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
+    open func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
@@ -139,7 +139,7 @@ public class Item<T>: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: current object.
-    public func addCategory(_ name: String, value: AnyObject) -> Item<T> {
+    open func addCategory(_ name: String, value: AnyObject) -> Item<T> {
         if itemCategory == nil {
             itemCategory = Category<Item<T>>(parent: self)
         }
@@ -147,11 +147,11 @@ public class Item<T>: BaseItem<AnyObject> {
         return self
     }
     
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 
-    public override func getMap() -> Dictionary<String, AnyObject> {
+    open override func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         dictionary = super.getMap()
         if productInformation != nil {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ProductInfo<T>: BaseItem<AnyObject> {
+open class ProductInfo<T>: BaseItem<AnyObject> {
 
     private let PRODUCT_ID = "productID"
     private let PRODUCT_NAME = "productName"
@@ -33,7 +33,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    public func endProductInfo() -> T {
+    open func endProductInfo() -> T {
         return parent
     }
 
@@ -41,7 +41,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productID.
     /// - Parameter productID: String
     /// - Returns: current Object
-    public func productID(_ productID: String) -> Self {
+    open func productID(_ productID: String) -> Self {
         addItem(PRODUCT_ID, value: productID as AnyObject)
         return self
     }
@@ -50,7 +50,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productName.
     /// - Parameter productName: String
     /// - Returns: current Object
-    public func productName(_ productName: String) -> Self {
+    open func productName(_ productName: String) -> Self {
         addItem(PRODUCT_NAME, value: productName as AnyObject)
         return self
     }
@@ -59,7 +59,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the description.
     /// - Parameter description: String
     /// - Returns: current Object
-    public func description(_ description: String) -> Self {
+    open func description(_ description: String) -> Self {
         addItem(DESCRIPTION, value: description as AnyObject)
         return self
     }
@@ -68,7 +68,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productURL.
     /// - Parameter productURL: String
     /// - Returns: current Object
-    public func productURL(_ productURL: String) -> Self {
+    open func productURL(_ productURL: String) -> Self {
         addItem(PRODUCT_URL, value: productURL as AnyObject)
         return self
     }
@@ -77,7 +77,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productImage.
     /// - Parameter productImage: String
     /// - Returns: current Object
-    public func productImage(_ productImage: String) -> Self {
+    open func productImage(_ productImage: String) -> Self {
         addItem(PRODUCT_IMAGE, value: productImage as AnyObject)
         return self
     }
@@ -86,7 +86,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the productThumbnail.
     /// - Parameter productThumbnail: String
     /// - Returns: current Object
-    public func productThumbnail(_ productThumbnail: String) -> Self {
+    open func productThumbnail(_ productThumbnail: String) -> Self {
         addItem(PRODUCT_THUMBNAIL, value: productThumbnail as AnyObject)
         return self
     }
@@ -95,7 +95,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the manufacturer.
     /// - Parameter manufacturer: String
     /// - Returns: current Object
-    public func manufacturer(_ manufacturer: String) -> Self {
+    open func manufacturer(_ manufacturer: String) -> Self {
         addItem(MANUFACTURER, value: manufacturer as AnyObject)
         return self
     }
@@ -104,7 +104,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the sku.
     /// - Parameter sku: String
     /// - Returns: current Object
-    public func sku(_ sku: String) -> Self {
+    open func sku(_ sku: String) -> Self {
         addItem(SKU, value: sku as AnyObject)
         return self
     }
@@ -113,7 +113,7 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the color.
     /// - Parameter color: String
     /// - Returns: current Object
-    public func color(_ color: String) -> Self {
+    open func color(_ color: String) -> Self {
         addItem(COLOR, value: color as AnyObject)
         return self
     }
@@ -122,12 +122,12 @@ public class ProductInfo<T>: BaseItem<AnyObject> {
     /// Sets the size.
     /// - Parameter size: String
     /// - Returns: current Object
-    public func size(_ size: String) -> Self {
+    open func size(_ size: String) -> Self {
         addItem(SIZE, value: size as AnyObject)
         return self
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 }

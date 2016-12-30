@@ -15,22 +15,22 @@ import Foundation
 /// completed orders.
 ///
 
-public class Cart: BaseItem<AnyObject> {
+open class Cart: BaseItem<AnyObject> {
 
-    private let CART_ID: String = "cartID"
-    private var parent: DigitalData!
+    fileprivate let CART_ID: String = "cartID"
+    fileprivate var parent: DigitalData!
 
     //JSON id - cartID
-    private var cartID: String!
+    fileprivate var cartID: String!
 
     //JSON id - price
-    private var cartPrice: Price<Cart>!
+    fileprivate var cartPrice: Price<Cart>!
 
     //JSON id - attributes
-    private var cartAttributes: DAttributes<Cart>!
+    fileprivate var cartAttributes: DAttributes<Cart>!
 
     //JSON id - item
-    private var cartItem: Array<Item<Cart>>!
+    fileprivate var cartItem: Array<Item<Cart>>!
 
 
     /// init `Cart` object.
@@ -48,7 +48,7 @@ public class Cart: BaseItem<AnyObject> {
 
     ///  returns to the parent object.
     /// - Returns: DigitalData
-    public func endCart() -> DigitalData {
+    open func endCart() -> DigitalData {
         return parent
     }
 
@@ -56,7 +56,7 @@ public class Cart: BaseItem<AnyObject> {
     ///  Set the cartID
     /// - Parameter cartID: An identifier for a particular shopping cart.
     /// - Returns: The current Cart Object.
-    public func cartID(_ cartID: String) -> Cart {
+    open func cartID(_ cartID: String) -> Cart {
         return custom(CART_ID, value: cartID as AnyObject) as! Cart
     }
 
@@ -69,7 +69,7 @@ public class Cart: BaseItem<AnyObject> {
     /// charges, and tax.
     ///
     /// - Returns: The Price object for the current Cart
-    public func price() -> Price<Cart> {
+    open func price() -> Price<Cart> {
         if cartPrice == nil {
             cartPrice =  Price<Cart>(parent: self)
         }
@@ -85,7 +85,7 @@ public class Cart: BaseItem<AnyObject> {
     /// values passed.
     ///
     /// - Returns: Attributes object for this Cart
-    public func attributes() -> DAttributes<Cart> {
+    open func attributes() -> DAttributes<Cart> {
         if cartAttributes == nil {
             cartAttributes = DAttributes<Cart>(parent: self)
         }
@@ -97,7 +97,7 @@ public class Cart: BaseItem<AnyObject> {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Cart object
-    public func addAttribute(_ name: String, value: AnyObject) -> Cart {
+    open func addAttribute(_ name: String, value: AnyObject) -> Cart {
         if cartAttributes == nil {
             cartAttributes = DAttributes<Cart>(parent: self)
         }
@@ -108,7 +108,7 @@ public class Cart: BaseItem<AnyObject> {
 
     /// Adds a new item to the list of items in the Cart.
     /// - Returns: A new Item object
-    public func addItem() -> Item<Cart> {
+    open func addItem() -> Item<Cart> {
         if cartItem == nil {
             cartItem = Array<Item<Cart>>()
         }
@@ -117,11 +117,11 @@ public class Cart: BaseItem<AnyObject> {
         return item
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 
-    public override func getMap() -> Dictionary<String, AnyObject> {
+    open override func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         dictionary = super.getMap()
         if cartID != nil {

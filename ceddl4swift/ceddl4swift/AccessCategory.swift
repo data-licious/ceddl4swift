@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class AccessCategory: BaseItem<AnyObject> {
+open class AccessCategory: BaseItem<AnyObject> {
 
-    private let CATEGORY_NAME = "categoryName"
-    private let DOMAINS = "domains"
+    fileprivate let CATEGORY_NAME = "categoryName"
+    fileprivate let DOMAINS = "domains"
 
-    private var parent: Privacy
+    fileprivate var parent: Privacy
 
 
     /// init an AccessCategory object.
@@ -25,7 +25,7 @@ public class AccessCategory: BaseItem<AnyObject> {
 
     /// Returns to the parent Privacy object.
     /// - Returns: parent Privacy object
-    public func endAccessCategory() -> Privacy {
+    open func endAccessCategory() -> Privacy {
         return parent
     }
 
@@ -38,7 +38,7 @@ public class AccessCategory: BaseItem<AnyObject> {
     ///
     /// - Parameter categoryName: string
     /// - Returns: current Object
-    public func categoryName(_ categoryName: String) -> Self {
+    open func categoryName(_ categoryName: String) -> Self {
         addItem(CATEGORY_NAME, value: categoryName as AnyObject)
         return self
     }
@@ -54,12 +54,12 @@ public class AccessCategory: BaseItem<AnyObject> {
     ///
     /// - Parameter domains: String
     /// - Returns: current Object
-    public func domains(_ domains: Array<String>) -> Self {
+    open func domains(_ domains: Array<String>) -> Self {
         addItem(DOMAINS, value: domains as AnyObject)
         return self
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 }

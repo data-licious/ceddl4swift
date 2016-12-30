@@ -8,21 +8,21 @@
 
 import Foundation
 
-public class Product: NSObject, JSONProtocol {
+open class Product: NSObject, JSONProtocol {
 
-    private var parent: DigitalData!
+    fileprivate var parent: DigitalData!
 
     //JSON id - productInfo
-    private var productInformation: ProductInfo<Product>!
+    fileprivate var productInformation: ProductInfo<Product>!
 
     //JSON id - category
-    private var productCategory: Category<Product>!
+    fileprivate var productCategory: Category<Product>!
 
     //JSON id - linkedProducts
-    private var linkedProducts: Array<LinkedProduct<Product>>!
+    fileprivate var linkedProducts: Array<LinkedProduct<Product>>!
 
     //JSON id - attributes
-    private var productAttributes: DAttributes<Product>!
+    fileprivate var productAttributes: DAttributes<Product>!
 
 
     /// init `Product` object.
@@ -40,7 +40,7 @@ public class Product: NSObject, JSONProtocol {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    public func endProduct() -> DigitalData {
+    open func endProduct() -> DigitalData {
         return parent
     }
 
@@ -50,7 +50,7 @@ public class Product: NSObject, JSONProtocol {
     /// ProductInfo describes the product.
     ///
     /// - Returns: the ProductInfo object for this Product
-    public func productInfo() -> ProductInfo<Product> {
+    open func productInfo() -> ProductInfo<Product> {
         if productInformation == nil {
             productInformation = ProductInfo<Product>(parent: self)
         }
@@ -69,7 +69,7 @@ public class Product: NSObject, JSONProtocol {
     /// both naming and values passed.
     ///
     /// - Returns:  Category object for this Product
-    public func category() -> Category<Product> {
+    open func category() -> Category<Product> {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
         }
@@ -78,7 +78,7 @@ public class Product: NSObject, JSONProtocol {
 
     /// Adds a new Linked Product to the list of linked products.
     /// - Returns: a new Linked Product
-    public func addLinkedProduct() -> LinkedProduct<Product> {
+    open func addLinkedProduct() -> LinkedProduct<Product> {
         if linkedProducts == nil {
             linkedProducts = Array<LinkedProduct<Product>>()
         }
@@ -96,7 +96,7 @@ public class Product: NSObject, JSONProtocol {
     /// values passed.
     ///
     /// - Returns: Attributes object for this Product
-    public func attributes() -> DAttributes<Product> {
+    open func attributes() -> DAttributes<Product> {
         if productAttributes == nil {
             productAttributes = DAttributes<Product>(parent: self)
         }
@@ -108,7 +108,7 @@ public class Product: NSObject, JSONProtocol {
     /// - Parameter name: Name of the attribute
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Product object
-    public func addAttribute(_ name: String, value: AnyObject) -> Self {
+    open func addAttribute(_ name: String, value: AnyObject) -> Self {
         if productAttributes == nil {
             productAttributes = DAttributes<Product>(parent: self)
         }
@@ -120,7 +120,7 @@ public class Product: NSObject, JSONProtocol {
     /// Directly adds the primary category to the Product's categories
     /// - Parameter primaryCategory: Value for the primary category
     /// - Returns: The current Product object
-    public func addPrimaryCategory(_ primaryCategory: String) -> Self {
+    open func addPrimaryCategory(_ primaryCategory: String) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
         }
@@ -133,7 +133,7 @@ public class Product: NSObject, JSONProtocol {
     /// - Parameter name: Name of the category
     /// - Parameter value: Value for the attribute
     /// - Returns: The current Product object
-    public func addCategory(_ name: String, value: AnyObject) -> Self {
+    open func addCategory(_ name: String, value: AnyObject) -> Self {
         if productCategory == nil {
             productCategory = Category<Product>(parent: self)
         }
@@ -141,7 +141,7 @@ public class Product: NSObject, JSONProtocol {
         return self
     }
 
-    public func getMap() -> Dictionary<String, AnyObject> {
+    open func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if productInformation != nil {
             dictionary["productInfo"] = productInformation.getMap() as AnyObject

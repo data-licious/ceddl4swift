@@ -19,7 +19,7 @@ public let dateToStringFormatter: DateFormatter = {
 
 /// Checking the equality of `Dictionary`
 public func ==(lhs: [String: AnyObject], rhs: [String: AnyObject] ) -> Bool {
-    return NSDictionary(dictionary: lhs).isEqual(rhs)
+    return NSDictionary(dictionary: lhs).isEqual(to: rhs)
 }
 
 /// Converting date to `String`
@@ -39,11 +39,11 @@ public func + <K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary
     return map
 }
 
-public class Utility {
+open class Utility {
     class func loadJSONFromFile(_ type: Swift.AnyClass, name: String) throws -> Any {
         let filePath = Bundle(for: type).path(forResource: name, ofType: "json")
-        let fileURL = NSURL(fileURLWithPath: filePath!)
-        let data = try Data(contentsOf: fileURL as URL)
+        let fileURL = URL(fileURLWithPath: filePath!)
+        let data = try Data(contentsOf: fileURL)
         let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
         return json
     }

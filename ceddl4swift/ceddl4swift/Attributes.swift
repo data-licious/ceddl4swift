@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class DAttributes<T>: BaseItem<AnyObject> {
+open class DAttributes<T>: BaseItem<AnyObject> {
 
-    private var parent: T
+    fileprivate var parent: T
 
 
     /// init an DAttributes object.
@@ -22,7 +22,7 @@ public class DAttributes<T>: BaseItem<AnyObject> {
 
     /// Returns to the parent object.
     /// - Returns: parent object
-    public func endAttributes() -> T {
+    open func endAttributes() -> T {
         return parent
     }
 
@@ -31,12 +31,12 @@ public class DAttributes<T>: BaseItem<AnyObject> {
     /// - Parameter name: Custom attribute name
     /// - Parameter value: Custom attribute value
     /// - Returns: current object
-    public func attribute(_ name: String, value: AnyObject) -> DAttributes {
+    open func attribute(_ name: String, value: AnyObject) -> DAttributes {
         super.addItem(name, value: value)
         return self
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 }

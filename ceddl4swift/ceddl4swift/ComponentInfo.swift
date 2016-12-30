@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class ComponentInfo: BaseItem<AnyObject> {
+open class ComponentInfo: BaseItem<AnyObject> {
 
-    private let COMPONENT_ID_NAME = "componentID"
-    private var parent: Component
+    fileprivate let COMPONENT_ID_NAME = "componentID"
+    fileprivate var parent: Component
 
 
     /// init an ComponentInfo object.
@@ -23,7 +23,7 @@ public class ComponentInfo: BaseItem<AnyObject> {
 
     /// Returns to the parent Component object.
     /// - Returns: parent Component object
-    public func endComponentInfo() -> Component {
+    open func endComponentInfo() -> Component {
         return parent
     }
 
@@ -31,12 +31,12 @@ public class ComponentInfo: BaseItem<AnyObject> {
     /// Sets the componentID.
     /// - Parameter componentID: String
     /// - Returns: current ComponentInfo
-    public func componentID(_ componentID: String) -> ComponentInfo {
+    open func componentID(_ componentID: String) -> ComponentInfo {
         addItem(COMPONENT_ID_NAME, value: componentID as AnyObject)
         return self
     }
 
-    public override func returnSelf() -> AnyObject {
+    open override func returnSelf() -> AnyObject {
         return self
     }
 }

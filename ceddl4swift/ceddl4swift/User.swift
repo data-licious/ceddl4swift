@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class User: NSObject, JSONProtocol {
+open class User: NSObject, JSONProtocol {
 
-    private var parent: DigitalData!
+    fileprivate var parent: DigitalData!
 
     //JSON id - segment
-    private var userSegment: Segment!
+    fileprivate var userSegment: Segment!
 
     //JSON id - profile
-    private var userProfile: Array<UserProfile>!
+    fileprivate var userProfile: Array<UserProfile>!
 
 
     /// init `Event` object.
@@ -34,7 +34,7 @@ public class User: NSObject, JSONProtocol {
 
     /// Returns to the parent object.
     /// - Returns: Parent object
-    public func endUser() -> DigitalData {
+    open func endUser() -> DigitalData {
         return parent
     }
 
@@ -48,7 +48,7 @@ public class User: NSObject, JSONProtocol {
     /// individual implementation needs in both naming and values passed.
     ///
     /// - Returns: Attributes object
-    public func segment() -> Segment {
+    open func segment() -> Segment {
         if userSegment == nil {
             userSegment = Segment(parent: self)
         }
@@ -60,7 +60,7 @@ public class User: NSObject, JSONProtocol {
     /// - Parameter name: Name of the segment
     /// - Parameter value: Value for the segment
     /// - Returns: current User object.
-    public func addSegment(_ name: String, value: String) -> Self {
+    open func addSegment(_ name: String, value: String) -> Self {
         if userSegment == nil {
             userSegment = Segment(parent: self)
         }
@@ -77,7 +77,7 @@ public class User: NSObject, JSONProtocol {
     /// user.)
     ///
     /// - Returns: a new (User)Profile object
-    public func addProfile() -> UserProfile {
+    open func addProfile() -> UserProfile {
         if userProfile == nil {
             userProfile = Array<UserProfile>()
         }
@@ -86,7 +86,7 @@ public class User: NSObject, JSONProtocol {
         return usrProfile;
     }
 
-    public func getMap() -> Dictionary<String, AnyObject> {
+    open func getMap() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         if userSegment != nil {
             dictionary["segment"] = userSegment.getMap() as AnyObject
